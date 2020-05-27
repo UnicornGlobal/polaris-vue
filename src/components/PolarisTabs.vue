@@ -23,10 +23,9 @@
     </div>
     <div
       v-for="name in tabNames"
-      v-if="name == activeTab"
       style="padding: 1.6rem;"
     >
-      <slot :name="name" />
+      <slot v-if="name == activeTab" :name="name" />
     </div>
   </div>
 </template>
