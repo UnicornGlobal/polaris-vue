@@ -67,5 +67,3 @@ module.exports = {
     vue: 'vue'
   }
 };
-
-module.exports = config;
