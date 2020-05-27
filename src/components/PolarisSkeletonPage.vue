@@ -47,12 +47,18 @@ export default {
         PolarisSkeletonBodyText,
     },
     props: {
-        title: String,
-        fullWidth: Boolean,
-        secondaryActions: {
-            type: Array,
-            default() { return [] }
-        },
+      title: {
+        type: String,
+        default: ''
+      },
+      fullWidth: {
+        type: Boolean,
+        default: false
+      },
+      secondaryActions: {
+        type: Array,
+        default() { return [] }
+      }
     },
     computed: {
         classes() {
