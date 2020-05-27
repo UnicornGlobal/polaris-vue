@@ -9,7 +9,7 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-cheap-module-source-map',
   devServer: {
-    contentBase: './lib',
+    contentBase: './test',
     hot: true
   },
   plugins: [

@@ -1,6 +1,5 @@
 (function() {
     function init() {
-
         Vue.use(PolarisVue)
 
         var root = new Vue({
