@@ -1,33 +1,19 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
-const env = require('yargs').argv.env;
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-let libraryName = 'polaris-vue';
-let libraryNameCamelCase= 'PolarisVue';
+const libraryName = 'polaris-vue';
+const libraryNameCamelCase= 'PolarisVue';
 
-let plugins = [], outputFile;
-
-if (env === 'build') {
-  outputFile = libraryName + '.min.js';
-} else {
-  outputFile = libraryName + '.js';
-}
-
-plugins.push(new ExtractTextPlugin(libraryName+".css"));
-
-const config = {
-  mode: env === 'build' ? 'production' : 'development',
-  entry: __dirname + '/src/index.js',
+module.exports = {
   entry: {
     app: ['@babel/polyfill', './src/index.js'],
     secondary: ['change-case']
   },
-  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'lib'),
     publicPath: '/',
-    filename: outputFile,
+    filename: '[name].[hash].js',
     library: libraryNameCamelCase,
     libraryTarget: 'umd',
     umdNamedDefine: true
@@ -39,6 +25,10 @@ const config = {
     },
     runtimeChunk: 'multiple'
   },
+  plugins: [
+    new VueLoaderPlugin(),
+    new webpack.HashedModuleIdsPlugin()
+  ],
   module: {
     rules: [
       {
@@ -73,7 +63,6 @@ const config = {
     modules: [path.resolve('./node_modules'), path.resolve('./src')],
     extensions: ['.json', '.js']
   },
-  plugins: plugins,
   externals: {
     vue: 'vue'
   }

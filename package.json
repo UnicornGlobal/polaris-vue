@@ -4,10 +4,10 @@
   "description": "Shopify Polaris for Vue 2",
   "main": "lib/polaris-vue.min.js",
   "scripts": {
-    "build": "webpack --env build",
-    "dev": "webpack --progress --colors --watch --env dev",
-    "test": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
-    "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js"
+    "build": "webpack --config webpack.prod.conf",
+    "dev": "webpack-dev-server --config webpack.dev.js",
+    "test": "cross-env BABEL_ENV=test nyc --reporter=lcov --reporter=text --reporter=html mochapack --webpack-config webpack.test.js --colors --require test/setup.js test/**/*.spec.js test/**/**/*.spec.js",
+    "test:watch": "cross-env BABEL_ENV=test nyc --reporter=lcov --reporter=text --reporter=html mochapack --webpack-config webpack.test.js --colors -w --require test/setup.js test/**/*.spec.js test/**/**/*.spec.js",
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
