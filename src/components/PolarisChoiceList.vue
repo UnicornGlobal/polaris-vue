@@ -49,19 +49,34 @@ export default {
         event: 'change'
     },
     props: {
-        title: String,
-        titleHidden: Boolean,
-        choices: {
-            type: Array,
-            default() { return [] }
-        },
-        selected: {
-            type: Array,
-            default() { return [] }
-        },
-        name: String,
-        allowMultiple: Boolean,
-        disabled: Boolean,
+      title: {
+        type: String,
+        default: ''
+      },
+      titleHidden: {
+        type: Boolean,
+        default: false
+      },
+      choices: {
+        type: Array,
+        default() { return [] }
+      },
+      selected: {
+        type: Array,
+        default() { return [] }
+      },
+      name: {
+        type: String,
+        default: ''
+      },
+      allowMultiple: {
+        type: Boolean,
+        default: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      }
     },
     computed: {
         finalName() {
