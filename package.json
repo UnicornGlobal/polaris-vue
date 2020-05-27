@@ -1,6 +1,6 @@
 {
-  "name": "@eastsideco/polaris-vue",
-  "version": "0.1.22",
+  "name": "@unicorns/polaris-vue",
+  "version": "0.2.0",
   "description": "Shopify Polaris for Vue 2",
   "main": "lib/polaris-vue.min.js",
   "scripts": {
@@ -31,14 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/EastsideCo/polaris-vue.git"
+    "url": "https://github.com/UnicornGlobal/polaris-vue.git"
   },
   "keywords": [],
   "author": "ESC Apps Team <support@appydesign.co.uk>",
   "license": "MIT",
   "dependencies": {
-    "change-case": "^3.0.1",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^6.0.6"
+    "change-case": "^3.0.1"
   }
 }
