@@ -1,4 +1,3 @@
-
 import styles from './resources/styles/styles.css'; // eslint-disable-line no-unused-vars
 
 import PolarisAccountConnection from './components/PolarisAccountConnection.vue';

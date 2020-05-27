@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const onceImporter = require('node-sass-once-importer')
 
 const libraryName = 'polaris-vue';
 const libraryNameCamelCase= 'PolarisVue';
@@ -8,22 +9,16 @@ const libraryNameCamelCase= 'PolarisVue';
 module.exports = {
   entry: {
     app: ['@babel/polyfill', './src/index.js'],
-    secondary: ['change-case']
   },
   output: {
     path: path.resolve(__dirname, 'lib'),
     publicPath: '/',
-    filename: '[name].[hash].js',
     library: libraryNameCamelCase,
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
   optimization: {
-    usedExports: true,
-    splitChunks: {
-      chunks: 'all'
-    },
-    runtimeChunk: 'multiple'
+    usedExports: true
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -50,8 +45,22 @@ module.exports = {
         exclude: /(node_modules|bower_components)/
       },
       {
-        test: /\.css$/,
-        loader: 'css-loader',
+        test: /\.(sass|scss|css)$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                importer: onceImporter(),
+                includePaths: [
+                  path.resolve(__dirname, './src/resources/styles/styles')
+                ]
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.svg$/,

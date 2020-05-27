@@ -9,4 +9,7 @@ module.exports = merge(common, {
     // new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(['lib'])
   ],
+  output: {
+    filename: '[name].min.js'
+  }
 })

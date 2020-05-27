@@ -4,7 +4,7 @@
   "description": "Shopify Polaris for Vue 2",
   "main": "lib/polaris-vue.min.js",
   "scripts": {
-    "build": "webpack --config webpack.prod.conf",
+    "build": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js",
     "test": "cross-env BABEL_ENV=test nyc --reporter=lcov --reporter=text --reporter=html mochapack --webpack-config webpack.test.js --colors --require test/setup.js test/**/*.spec.js test/**/**/*.spec.js",
     "test:watch": "cross-env BABEL_ENV=test nyc --reporter=lcov --reporter=text --reporter=html mochapack --webpack-config webpack.test.js --colors -w --require test/setup.js test/**/*.spec.js test/**/**/*.spec.js"
@@ -22,6 +22,7 @@
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-add-module-exports": "0.2.1",
     "chai": "4.2.0",
+    "clean-webpack-plugin": "^1.0.1",
     "css-loader": "^3.5.3",
     "eslint": "^6.8.0",
     "eslint-config-vue": "^2.0.2",
@@ -35,6 +36,7 @@
     "mocha": "^7.1.2",
     "mochapack": "^2.0.0",
     "node-sass": "^4.14.1",
+    "node-sass-once-importer": "^5.3.2",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "vue-loader": "^15.9.2",
