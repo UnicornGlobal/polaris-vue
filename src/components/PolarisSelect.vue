@@ -224,12 +224,10 @@ export default {
           let option =  this.options.find( e => e.value === v)
           if (option) {
             return option.label
-          } else {
-            return v
           }
         }
-        return v
       }
+      return v
     }
   },
   methods: {

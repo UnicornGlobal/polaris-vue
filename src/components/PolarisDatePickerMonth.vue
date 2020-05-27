@@ -18,20 +18,24 @@
         :label="dayName"
       />
     </div>
-    <div v-for="week, index in weeks">
+    <div
+      v-for="(week, index) in weeks"
+      :key="index"
+    >
       <div
-        key="index"
+        :key="index"
         role="row"
         class="Polaris-DatePicker__Week"
       >
-        <template v-for="day, dayIndex in week">
+        <template v-for="(day, dayIndex) in week">
           <polaris-date-picker-day
             v-if="!day"
             :key="dayIndex"
             @hover="handleHoverEmptyDay"
           />
           <polaris-date-picker-day
-            v-if="day"
+            v-else
+            :key="dayIndex"
             :focused="focusedDate && isSameDay(focusedDate, day)"
             :day="day"
             :selected="selected && dateIsSelected(day)"

@@ -2,11 +2,13 @@
   <div :class="classes">
     <slot />
     <polaris-button-group-item
-      v-for="slot, name in $slots"
-      v-if="name != 'default'"
+      v-for="(slot, name) in $slots"
       :key="name"
     >
-      <slot :name="name" />
+      <slot
+        v-if="name != 'default'"
+        :name="name"
+      />
     </polaris-button-group-item>
   </div>
 </template>

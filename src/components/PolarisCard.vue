@@ -25,8 +25,8 @@
         <polaris-stack-item>
           <polaris-button-group>
             <polaris-button
-              v-for="action, index in actions"
-              key="action"
+              v-for="(action, index) in actions"
+              :key="index"
               :slot="index"
               :url="action.url"
               :destructive="action.destructive"

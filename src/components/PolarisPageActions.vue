@@ -7,9 +7,9 @@
       <polaris-stack-item v-if="secondaryActions.length > 0">
         <polaris-button-group>
           <polaris-button
-            v-for="action, index in secondaryActions"
+            v-for="(action, index) in secondaryActions"
             :slot="index"
-            key="action"
+            :key="index"
             :accessibility-label="action.accessibilityLabel"
             :url="action.url"
             :disabled="action.disabled"
