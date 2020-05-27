@@ -29,7 +29,6 @@
 <script>
 import ComponentHelpers from '../ComponentHelpers.js'
 import PolarisImage from './PolarisImage.vue'
-import PolarisIcon from './PolarisIcon.vue'
 import * as avatars from '../resources/avatars'
 
 var AVATAR_IMAGES = []
@@ -43,7 +42,6 @@ const STYLE_CLASSES = ['styleOne', 'styleTwo', 'styleThree', 'styleFour', 'style
 export default {
     components: {
         PolarisImage,
-        PolarisIcon,
     },
     props: {
         size: {
@@ -57,11 +55,23 @@ export default {
                 ].indexOf(v) != -1
             }
         },
-        name: String,
-        initials: String,
+      name: {
+        type: String,
+        default: ''
+      },
+      initials: {
+        type: String,
+        default: ''
+      },
         customer: Boolean,
-        source: String,
-        accessibilityLabel: String
+      source: {
+        type: String,
+        default: ''
+      },
+      accessibilityLabel: {
+        type: String,
+        default: ''
+      }
     },
     computed: {
         label() {

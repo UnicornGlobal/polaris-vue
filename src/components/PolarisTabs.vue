@@ -25,7 +25,10 @@
       v-for="name in tabNames"
       style="padding: 1.6rem;"
     >
-      <slot v-if="name == activeTab" :name="name" />
+      <slot
+        v-if="name == activeTab"
+        :name="name"
+      />
     </div>
   </div>
 </template>
@@ -38,9 +41,12 @@ export default {
         prop: 'value',
         event: 'change'
     },
-    props: [
-        'value'
-    ],
+  props: {
+    value: {
+      type: String,
+      default: ''
+    }
+  },
     data() {
         return {
             activeTab: null

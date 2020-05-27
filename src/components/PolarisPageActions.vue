@@ -48,13 +48,18 @@ export default {
         PolarisButton,
     },
     props: {
-        primaryAction: Object,
-        secondaryActions: {
-            type: Array,
-            default() {
-                return []
-            }
+      primaryAction: {
+        type: Object,
+        default() {
+          return {}
+        },
+      },
+      secondaryActions: {
+        type: Array,
+        default() {
+          return []
         }
+      }
     },
     methods: {
         handleAction(action) {

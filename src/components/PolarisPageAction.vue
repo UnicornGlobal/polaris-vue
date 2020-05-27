@@ -78,22 +78,29 @@
 <script>
 import DynamicTemplate from './DynamicTemplate.vue'
 import PolarisIcon from './PolarisIcon.vue'
-import PolarisButton from './PolarisButton.vue'
 import PolarisUnstyledLink from './PolarisUnstyledLink.vue'
 
 export default {
     components: {
         DynamicTemplate,
         PolarisIcon,
-        PolarisButton,
         PolarisUnstyledLink,
     },
     props: {
-        icon: String,
-        url: String,
+      icon: {
+        type: String,
+        default: ''
+      },
+      url: {
+        type: String,
+        default: ''
+      },
         external: Boolean,
         disclosure: Boolean,
-        accessibilityLabel: String,
+      accessibilityLabel: {
+        type: String,
+        default: ''
+      },
         disabled: Boolean,
     },
     computed: {

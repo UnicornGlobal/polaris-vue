@@ -3,222 +3,222 @@
     <div
       v-if="hasBreadcrumbs || pagination"
       class="Polaris-Page__Navigation"
-      >
+    >
       <polaris-breadcrumbs
         v-if="breadcrumbs.length > 0"
         :breadcrumbs="breadcrumbs"
+      />
+      <div
+        v-if="pagination"
+        class="Polaris-Page__Pagination"
+      >
+        <polaris-pagination
+          plain
+          :has-next="pagination.hasNext"
+          :has-previous="pagination.hasPrevious"
+          :next-url="pagination.nextURL"
+          :previous-url="pagination.previousURL"
         />
-        <div
-          v-if="pagination"
-          class="Polaris-Page__Pagination"
-          >
-          <polaris-pagination
-            plain
-            :has-next="pagination.hasNext"
-            :has-previous="pagination.hasPrevious"
-            :next-url="pagination.nextURL"
-            :previous-url="pagination.previousURL"
-            />
-        </div>
+      </div>
     </div>
-      <template v-if="primaryAction">
-        <div class="Polaris-Page__MainContent">
-          <div class="Polaris-Page__TitleAndActions">
-            <div class="Polaris-Page__Title">
-              <polaris-display-text
-                size="large"
-                element="h1"
-                >
-                {{ title }}
-              </polaris-display-text>
-            </div>
-            <div class="Polaris-Page__Actions">
-              <div class="Polaris-Page__PrimaryAction">
-                <polaris-button
-                  primary
-                  :accessibility-label="primaryAction.accessibiltyLabel"
-                  :url="primaryAction.url"
-                  :external="primaryAction.external"
-                  :disabled="primaryAction.disabled"
-                  :destructive="primaryAction.destructive"
-                  :icon="primaryAction.icon"
-                  :loading="primaryAction.loading"
-                  @click="handleAction(primaryAction, true)"
-                  >
-                  {{ primaryAction.content }}
-                </polaris-button>
-              </div>
-              <div class="Polaris-Page__SecondaryActions">
-                <div
-                  v-if="hasRollup"
-                  class="Polaris-Page__Rollup"
-                  >
-                  <polaris-popover
-                    :active="rollupOpen"
-                    @close="handleRollupToggle"
-                    >
-                    <template slot="activator">
-                      <polaris-button
-                        disclosure
-                        @click="handleRollupToggle"
-                        >
-                        Actions
-                      </polaris-button>
-                    </template>
-                    <polaris-action-list
-                      :items="secondaryActions"
-                      :sections="actionGroupsAsListSections"
-                      @action-any-item="handleRollupToggle"
-                      />
-                  </polaris-popover>
-                </div>
-                <div class="Polaris-Page__IndividualActions">
-                  <polaris-page-action
-                    v-for="(action, i) in secondaryActions"
-                    :key="`action_${i}`"
-                    :accessibility-label="action.accessibiltyLabel"
-                    :url="action.url"
-                    :external="action.external"
-                    :disabled="action.disabled"
-                    :destructive="action.destructive"
-                    :icon="action.icon"
-                    :loading="action.loading"
-                    @click="handleAction(action, true)"
-                    >
-                    {{ action.content }}
-                  </polaris-page-action>
-                    <div
-                      v-for="group in actionGroups"
-                      class="Polaris-Page__ActionGroup"
-                      >
-                      <polaris-popover
-                        :active="group.title === openActionGroup"
-                        @close="handleActionGroupClose(group)"
-                        >
-                        <template slot="activator">
-                          <polaris-page-action
-                            disclosure
-                            :icon="group.icon"
-                            @action="handleActionGroupOpen(group)"
-                            >
-                            {{ group.title }}
-                          </polaris-page-action>
-                        </template>
-                        <polaris-action-list
-                          :items="group.actions"
-                          @action-any-item="handleActionGroupClose(group)"
-                          />
-                          <div
-                            v-if="group.details"
-                            class="Polaris-Page__Details"
-                            >
-                            {{ group.details }}
-                          </div>
-                      </polaris-popover>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="Polaris-Page__PrimaryAction">
-            <polaris-button
-              primary
-              :accessibility-label="primaryAction.accessibiltyLabel"
-              :url="primaryAction.url"
-              :external="primaryAction.external"
-              :disabled="primaryAction.disabled"
-              :destructive="primaryAction.destructive"
-              :icon="primaryAction.icon"
-              :loading="primaryAction.loading"
-              @click="handleAction(primaryAction, true)"
-              >
-              {{ primaryAction.content }}
-            </polaris-button>
-          </div>
-        </div>
-      </template>
-      <template v-if="!primaryAction">
-        <div class="Polaris-Page__Title">
-          <polaris-display-text
-            size="large"
-            element="h1"
+    <template v-if="primaryAction">
+      <div class="Polaris-Page__MainContent">
+        <div class="Polaris-Page__TitleAndActions">
+          <div class="Polaris-Page__Title">
+            <polaris-display-text
+              size="large"
+              element="h1"
             >
-            {{ title }}
-          </polaris-display-text>
-        </div>
-        <div class="Polaris-Page__Actions">
-          <div class="Polaris-Page__SecondaryActions">
-            <div
-              v-if="hasRollup"
-              class="Polaris-Page__Rollup"
+              {{ title }}
+            </polaris-display-text>
+          </div>
+          <div class="Polaris-Page__Actions">
+            <div class="Polaris-Page__PrimaryAction">
+              <polaris-button
+                primary
+                :accessibility-label="primaryAction.accessibiltyLabel"
+                :url="primaryAction.url"
+                :external="primaryAction.external"
+                :disabled="primaryAction.disabled"
+                :destructive="primaryAction.destructive"
+                :icon="primaryAction.icon"
+                :loading="primaryAction.loading"
+                @click="handleAction(primaryAction, true)"
               >
-              <polaris-popover
-                :active="rollupOpen"
-                @close="handleRollupToggle"
-                >
-                <template slot="activator">
-                  <polaris-button
-                    disclosure
-                    @click="handleRollupToggle"
-                    >
-                    Actions
-                  </polaris-button>
-                </template>
-                <polaris-action-list
-                  :items="secondaryActions"
-                  :sections="actionGroupsAsListSections"
-                  @action-any-item="handleRollupToggle"
-                  />
-              </polaris-popover>
+                {{ primaryAction.content }}
+              </polaris-button>
             </div>
-            <div class="Polaris-Page__IndividualActions">
-              <polaris-page-action
-                v-for="(action,i) in secondaryActions"
-                :key="`action_${i}`"
-                :accessibility-label="action.accessibiltyLabel"
-                :url="action.url"
-                :external="action.external"
-                :disabled="action.disabled"
-                :destructive="action.destructive"
-                :icon="action.icon"
-                :loading="action.loading"
-                @click="handleAction(action, true)"
+            <div class="Polaris-Page__SecondaryActions">
+              <div
+                v-if="hasRollup"
+                class="Polaris-Page__Rollup"
+              >
+                <polaris-popover
+                  :active="rollupOpen"
+                  @close="handleRollupToggle"
                 >
-                {{ action.content }}
-              </polaris-page-action>
+                  <template slot="activator">
+                    <polaris-button
+                      disclosure
+                      @click="handleRollupToggle"
+                    >
+                      Actions
+                    </polaris-button>
+                  </template>
+                  <polaris-action-list
+                    :items="secondaryActions"
+                    :sections="actionGroupsAsListSections"
+                    @action-any-item="handleRollupToggle"
+                  />
+                </polaris-popover>
+              </div>
+              <div class="Polaris-Page__IndividualActions">
+                <polaris-page-action
+                  v-for="(action, i) in secondaryActions"
+                  :key="`action_${i}`"
+                  :accessibility-label="action.accessibiltyLabel"
+                  :url="action.url"
+                  :external="action.external"
+                  :disabled="action.disabled"
+                  :destructive="action.destructive"
+                  :icon="action.icon"
+                  :loading="action.loading"
+                  @click="handleAction(action, true)"
+                >
+                  {{ action.content }}
+                </polaris-page-action>
                 <div
                   v-for="group in actionGroups"
                   class="Polaris-Page__ActionGroup"
-                  >
+                >
                   <polaris-popover
                     :active="group.title === openActionGroup"
                     @close="handleActionGroupClose(group)"
-                    >
+                  >
                     <template slot="activator">
                       <polaris-page-action
                         disclosure
                         :icon="group.icon"
                         @action="handleActionGroupOpen(group)"
-                        >
+                      >
                         {{ group.title }}
                       </polaris-page-action>
                     </template>
                     <polaris-action-list
                       :items="group.actions"
                       @action-any-item="handleActionGroupClose(group)"
-                      />
-                      <div
-                        v-if="group.details"
-                        class="Polaris-Page__Details"
-                        >
-                        {{ group.details }}
-                      </div>
+                    />
+                    <div
+                      v-if="group.details"
+                      class="Polaris-Page__Details"
+                    >
+                      {{ group.details }}
+                    </div>
                   </polaris-popover>
                 </div>
+              </div>
             </div>
           </div>
         </div>
-      </template>
+        <div class="Polaris-Page__PrimaryAction">
+          <polaris-button
+            primary
+            :accessibility-label="primaryAction.accessibiltyLabel"
+            :url="primaryAction.url"
+            :external="primaryAction.external"
+            :disabled="primaryAction.disabled"
+            :destructive="primaryAction.destructive"
+            :icon="primaryAction.icon"
+            :loading="primaryAction.loading"
+            @click="handleAction(primaryAction, true)"
+          >
+            {{ primaryAction.content }}
+          </polaris-button>
+        </div>
+      </div>
+    </template>
+    <template v-if="!primaryAction">
+      <div class="Polaris-Page__Title">
+        <polaris-display-text
+          size="large"
+          element="h1"
+        >
+          {{ title }}
+        </polaris-display-text>
+      </div>
+      <div class="Polaris-Page__Actions">
+        <div class="Polaris-Page__SecondaryActions">
+          <div
+            v-if="hasRollup"
+            class="Polaris-Page__Rollup"
+          >
+            <polaris-popover
+              :active="rollupOpen"
+              @close="handleRollupToggle"
+            >
+              <template slot="activator">
+                <polaris-button
+                  disclosure
+                  @click="handleRollupToggle"
+                >
+                  Actions
+                </polaris-button>
+              </template>
+              <polaris-action-list
+                :items="secondaryActions"
+                :sections="actionGroupsAsListSections"
+                @action-any-item="handleRollupToggle"
+              />
+            </polaris-popover>
+          </div>
+          <div class="Polaris-Page__IndividualActions">
+            <polaris-page-action
+              v-for="(action,i) in secondaryActions"
+              :key="`action_${i}`"
+              :accessibility-label="action.accessibiltyLabel"
+              :url="action.url"
+              :external="action.external"
+              :disabled="action.disabled"
+              :destructive="action.destructive"
+              :icon="action.icon"
+              :loading="action.loading"
+              @click="handleAction(action, true)"
+            >
+              {{ action.content }}
+            </polaris-page-action>
+            <div
+              v-for="group in actionGroups"
+              class="Polaris-Page__ActionGroup"
+            >
+              <polaris-popover
+                :active="group.title === openActionGroup"
+                @close="handleActionGroupClose(group)"
+              >
+                <template slot="activator">
+                  <polaris-page-action
+                    disclosure
+                    :icon="group.icon"
+                    @action="handleActionGroupOpen(group)"
+                  >
+                    {{ group.title }}
+                  </polaris-page-action>
+                </template>
+                <polaris-action-list
+                  :items="group.actions"
+                  @action-any-item="handleActionGroupClose(group)"
+                />
+                <div
+                  v-if="group.details"
+                  class="Polaris-Page__Details"
+                >
+                  {{ group.details }}
+                </div>
+              </polaris-popover>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
