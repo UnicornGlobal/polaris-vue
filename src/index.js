@@ -75,7 +75,6 @@ import PolarisLayoutSection from './components/PolarisLayoutSection.vue'
 import PolarisButtonGroupItem from './components/PolarisButtonGroupItem.vue'
 import PolarisLayoutAnnotatedSection from './components/PolarisLayoutAnnotatedSection.vue'
 
-
 import PolarisVueFadeTransition from './components/transitions/FadeTransition.vue'
 import PolarisVueFadeUpTransition from './components/transitions/FadeUpTransition.vue'
 import PolarisVueCollapseTransition from './components/transitions/CollapseTransition.vue'

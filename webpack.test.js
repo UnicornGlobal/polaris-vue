@@ -6,7 +6,7 @@ console.log('webpack.test')
 
 const config = {
   mode: 'development',
-  devtool: 'inline-cheap-module-source-map',
+  devtool: 'cheap-module-eval-source-map',
   resolve: {
     extensions: ['*', '.js', '.vue', '.svg', '.css'],
     modules: [

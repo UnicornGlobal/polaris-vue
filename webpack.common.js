@@ -9,7 +9,7 @@ const libraryNameCamelCase= 'PolarisVue'
 
 module.exports = {
   entry: {
-    app: ['@babel/polyfill', './src/index.js'],
+    app: ['./src/index.js'],
   },
   output: {
     path: path.resolve(__dirname, 'lib'),
@@ -18,12 +18,11 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  optimization: {
-    usedExports: true
+  node: {
+    global: false
   },
   plugins: [
     new VueLoaderPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin()
   ],
   module: {
@@ -44,7 +43,7 @@ module.exports = {
       {
         test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',
-        exclude: /(node_modules|bower_components)/
+        exclude: /node_modules/
       },
       {
         test: /\.(sass|scss|css)$/,
