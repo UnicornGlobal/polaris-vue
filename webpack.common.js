@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const onceImporter = require('node-sass-once-importer')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const libraryName = 'polaris-vue'
 const libraryNameCamelCase= 'PolarisVue'
@@ -22,7 +23,8 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new MiniCssExtractPlugin()
   ],
   module: {
     rules: [
@@ -48,6 +50,7 @@ module.exports = {
         test: /\.(sass|scss|css)$/,
         use: [
           'vue-style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'sass-loader',
