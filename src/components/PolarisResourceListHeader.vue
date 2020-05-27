@@ -1,43 +1,60 @@
 <template>
-    <div>
-        <div class="Polaris-ResourceList__HeaderOuterWrapper Polaris-ResourceList__HeaderWrapper--hasSelect">
-            <div>
-                <div>
-                    <div class="Polaris-ResourceList__HeaderWrapper">
-                        <div class="Polaris-ResourceList__HeaderContentWrapper">
-                            <div class="Polaris-ResourceList__HeaderTitleWrapper">Showing 2 customers</div>
-                            <div class="Polaris-ResourceList__CheckableButtonWrapper">
-                                <div class="Polaris-ResourceList-CheckableButton Polaris-ResourceList-CheckableButton__CheckableButton--plain">
-                                    <div class="Polaris-ResourceList-CheckableButton__Checkbox">
-                                        <label class="Polaris-Choice Polaris-Choice--labelHidden" for="PolarisCheckbox1">
-                                            <span class="Polaris-Choice__Control">
-                                                <span class="Polaris-Checkbox">
-                                                    <input id="PolarisCheckbox1" type="checkbox" class="Polaris-Checkbox__Input" aria-invalid="false" role="checkbox" aria-checked="false" value="">
-                                                    <span class="Polaris-Checkbox__Backdrop"></span><span class="Polaris-Checkbox__Icon"><span class="Polaris-Icon">
-                                                    <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
-                                                        <path d="M8.315 13.859l-3.182-3.417a.506.506 0 0 1 0-.684l.643-.683a.437.437 0 0 1 .642 0l2.22 2.393 4.942-5.327a.437.437 0 0 1
-                                                        .643 0l.643.684a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"></path></svg></span></span></span></span>
-                                            <span class="Polaris-Choice__Label">Select all 2 customers</span></label>
-                                    </div>
-                                    <span class="Polaris-ResourceList-CheckableButton__Label">Showing 2 customers</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <div>
+    <div class="Polaris-ResourceList__HeaderOuterWrapper Polaris-ResourceList__HeaderWrapper--hasSelect">
+      <div>
+        <div>
+          <div class="Polaris-ResourceList__HeaderWrapper">
+            <div class="Polaris-ResourceList__HeaderContentWrapper">
+              <div class="Polaris-ResourceList__HeaderTitleWrapper">
+                Showing 2 customers
+              </div>
+              <div class="Polaris-ResourceList__CheckableButtonWrapper">
+                <div class="Polaris-ResourceList-CheckableButton Polaris-ResourceList-CheckableButton__CheckableButton--plain">
+                  <div class="Polaris-ResourceList-CheckableButton__Checkbox">
+                    <label
+                      class="Polaris-Choice Polaris-Choice--labelHidden"
+                      for="PolarisCheckbox1"
+                    >
+                      <span class="Polaris-Choice__Control">
+                        <span class="Polaris-Checkbox">
+                          <input
+                            id="PolarisCheckbox1"
+                            type="checkbox"
+                            class="Polaris-Checkbox__Input"
+                            aria-invalid="false"
+                            role="checkbox"
+                            aria-checked="false"
+                            value=""
+                          >
+                          <span class="Polaris-Checkbox__Backdrop" /><span class="Polaris-Checkbox__Icon"><span class="Polaris-Icon">
+                            <svg
+                              viewBox="0 0 20 20"
+                              class="Polaris-Icon__Svg"
+                              focusable="false"
+                              aria-hidden="true"
+                            >
+                              <path
+                                d="M8.315 13.859l-3.182-3.417a.506.506 0 0 1 0-.684l.643-.683a.437.437 0 0 1 .642 0l2.22 2.393 4.942-5.327a.437.437 0 0 1
+                                                        .643 0l.643.684a.504.504 0 0 1 0 .683l-5.91 6.35a.437.437 0 0 1-.642 0"
+                              /></svg></span></span></span></span>
+                      <span class="Polaris-Choice__Label">Select all 2 customers</span></label>
+                  </div>
+                  <span class="Polaris-ResourceList-CheckableButton__Label">Showing 2 customers</span>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
-    import PolarisResourceListItem from './PolarisResourceListItem.vue';
-    import PolarisCheckbox from "./PolarisCheckbox.vue";
-    import PolarisButton from "./PolarisButton.vue";
+    import PolarisResourceListItem from './PolarisResourceListItem.vue'
+    import PolarisCheckbox from "./PolarisCheckbox.vue"
+    import PolarisButton from "./PolarisButton.vue"
 
     export default {
-        created: function(){
-            console.log( this );
-        },
         components: {
             PolarisButton,
             PolarisCheckbox,
@@ -45,12 +62,15 @@
         },
         props: {
         },
+        computed: {
+        },
+        created: function() {
+            console.log( this )
+        },
         methods: {
 
-        },
-        computed: {
         }
-    };
+    }
 </script>
 <style>
     .Polaris-ResourceList__HeaderOuterWrapper {

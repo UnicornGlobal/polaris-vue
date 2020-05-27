@@ -1,83 +1,85 @@
 <template>
-<div class="Polaris-DatePicker"
-     @keydown="handleKeyDown"
-     @keyup="handleKeyUp">
+  <div
+    class="Polaris-DatePicker"
+    @keydown="handleKeyDown"
+    @keyup="handleKeyUp"
+  >
     <div class="Polaris-DatePicker__Header">
-        <polaris-button 
-            plain
-            :icon="arrowLeft"
-            :accessibility-label="prevMonthChangeLabel"
-            @click="handlePrevMonthClick">
-        </polaris-button>
-        <polaris-button
-            plain
-            :icon="arrowRight"
-            :accessibility-label="nextMonthChangeLabel"
-            @click="handleNextMonthClick">
-        </polaris-button>
+      <polaris-button
+        plain
+        :icon="arrowLeft"
+        :accessibility-label="prevMonthChangeLabel"
+        @click="handlePrevMonthClick"
+      />
+      <polaris-button
+        plain
+        :icon="arrowRight"
+        :accessibility-label="nextMonthChangeLabel"
+        @click="handleNextMonthClick"
+      />
     </div>
     <div class="Polaris-DatePicker__MonthContainer">
-        <polaris-date-picker-month
-            @focus="handleFocus"
-            :focused-date="focusDate"
-            :month="month"
-            :year="year"
-            :selected="selected"
-            :hover-date="hoverDate"
-            @change="handleDateSelection"
-            @hover="handleHover"
-            :disable-dates-before="disableDatesBefore"
-            :disable-dates-after="disableDatesAfter"
-            :allow-range="allowRange">
-        </polaris-date-picker-month>
-        <polaris-date-picker-month
-            v-if="multiMonth"
-            @focus="handleFocus"
-            :focused-date="focusDate"
-            :month="nextMonth"
-            :year="nextMonthYear"
-            :selected="selected"
-            :hover-date="hoverDate"
-            @change="handleDateSelection"
-            @hover="handleHover"
-            :disable-dates-before="disableDatesBefore"
-            :disable-dates-after="disableDatesAfter"
-            :allow-range="allowRange">
-        </polaris-date-picker-month>
+      <polaris-date-picker-month
+        :focused-date="focusDate"
+        :month="month"
+        :year="year"
+        :selected="selected"
+        :hover-date="hoverDate"
+        :disable-dates-before="disableDatesBefore"
+        :disable-dates-after="disableDatesAfter"
+        :allow-range="allowRange"
+        @focus="handleFocus"
+        @change="handleDateSelection"
+        @hover="handleHover"
+      />
+      <polaris-date-picker-month
+        v-if="multiMonth"
+        :focused-date="focusDate"
+        :month="nextMonth"
+        :year="nextMonthYear"
+        :selected="selected"
+        :hover-date="hoverDate"
+        :disable-dates-before="disableDatesBefore"
+        :disable-dates-after="disableDatesAfter"
+        :allow-range="allowRange"
+        @focus="handleFocus"
+        @change="handleDateSelection"
+        @hover="handleHover"
+      />
     </div>
-</div>
+  </div>
 </template>
 
 
 <script>
-import PolarisDatePickerMonth from './PolarisDatePickerMonth.vue';
-import PolarisButton from './PolarisButton.vue';
-import dateUtils from '../data/date-utils.js';
+import PolarisDatePickerMonth from './PolarisDatePickerMonth.vue'
+import PolarisButton from './PolarisButton.vue'
+import dateUtils from '../data/date-utils.js'
 
-import arrowLeft from '../resources/arrow-left.svg';
-import arrowRight from '../resources/arrow-right.svg';
+import arrowLeft from '../resources/arrow-left.svg'
+import arrowRight from '../resources/arrow-right.svg'
 
 export default {
-    model: {
-        prop: 'selected',
-        event: 'change',
-    },
     components: {
         PolarisButton,
         PolarisDatePickerMonth
+    },
+    model: {
+        prop: 'selected',
+        event: 'change',
     },
     props: {
         selected: [Date, Object],
         month: {
             type: Number,
             default() {
-                return (new Date()).getMonth();
+                return (new Date()).getMonth()
             }
         },
         year: {
             type: Number,
             default() {
-                return (new Date()).getFullYear();
+                return (new Date()).getFullYear()
             }
         },
         disableDatesBefore: Date,
@@ -88,96 +90,96 @@ export default {
         return {
             arrowLeft: arrowLeft,
             arrowRight: arrowRight,
-            
+
             hoverDate: null,
             focusDate: null,
-        };
+        }
     },
     computed: {
         allowRange() {
-            return this.selected && !(this.selected instanceof Date);
+            return this.selected && !(this.selected instanceof Date)
         },
         prevMonthChangeLabel() {
-            var prevMonthName = dateUtils.months[this.prevMonth];
-            return 'Show previous month, '+prevMonthName+' '+this.prevMonthYear;
+            var prevMonthName = dateUtils.months[this.prevMonth]
+            return 'Show previous month, '+prevMonthName+' '+this.prevMonthYear
         },
         nextMonthChangeLabel() {
-            var nextMonthName = dateUtils.months[this.nextMonth];
-            return 'Show next month, '+nextMonthName+' '+this.nextMonthYear;
+            var nextMonthName = dateUtils.months[this.nextMonth]
+            return 'Show next month, '+nextMonthName+' '+this.nextMonthYear
         },
         prevMonth() {
-            var month = this.month;
+            var month = this.month
             if (month == 0) {
-                month = 11;
+                month = 11
             } else {
-                month--;
+                month--
             }
-            return month;
+            return month
         },
         prevMonthYear() {
-            var month = this.month;
-            var year = this.year;
+            var month = this.month
+            var year = this.year
             if (month == 0) {
-                year--;
+                year--
             }
-            return year;
+            return year
         },
         nextMonth() {
-            var month = this.month;
+            var month = this.month
             if (month == 11) {
-                month = 0;
+                month = 0
             } else {
-                month++;
+                month++
             }
-            return month;
+            return month
         },
         nextMonthYear() {
-            var month = this.month;
-            var year = this.year;
+            var month = this.month
+            var year = this.year
             if (month == 11) {
-                year++;
+                year++
             }
-            return year;
+            return year
         },
     },
     methods: {
         handleDateSelection(e) {
-            this.hoverDate = e.end;
-            this.focusDate = new Date(e.end);
-            
+            this.hoverDate = e.end
+            this.focusDate = new Date(e.end)
+
             if (this.allowRange) {
-                this.$emit('change', e);
+                this.$emit('change', e)
             } else {
-                this.$emit('change', e.end);
+                this.$emit('change', e.end)
             }
         },
         handleKeyDown(e) {
-            
+
         },
         handleKeyUp(e) {
-            
+
         },
         handlePrevMonthClick() {
-            this.focusDate = null;
+            this.focusDate = null
             this.$emit('monthchange', {
                 month: this.prevMonth,
                 year: this.prevMonthYear
-            });
+            })
         },
         handleNextMonthClick() {
-            this.focusDate = null;
+            this.focusDate = null
             this.$emit('monthchange', {
                 month: this.nextMonth,
                 year: this.nextMonthYear
-            });
-            
+            })
+
         },
         handleFocus() {
-            
+
         },
         handleHover() {
-            
+
         }
     }
-};
+}
 </script>

@@ -1,18 +1,18 @@
 <template>
-<div :class="classes">
-    <slot></slot>
-</div>
+  <div :class="classes">
+    <slot />
+  </div>
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     props: {
         spacing: {
             type: String,
             validate(s) {
-                return ['tight','loose'].indexOf(s) > -1;
+                return ['tight','loose'].indexOf(s) > -1
             },
             default: 'tight',
         },
@@ -21,9 +21,9 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-TextContainer', [
                 'spacing',
-            ], this);
+            ], this)
         },
     },
-    
-};
+
+}
 </script>

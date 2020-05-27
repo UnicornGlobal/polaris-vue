@@ -1,17 +1,24 @@
 <template>
-<span :class="classes" :aria-label="accessibilityLabel">
-    <div v-if="source == 'placeholder' || !finalSource" class="Polaris-Icon__Placeholder"></div>
+  <span
+    :class="classes"
+    :aria-label="accessibilityLabel"
+  >
+    <div
+      v-if="source == 'placeholder' || !finalSource"
+      class="Polaris-Icon__Placeholder"
+    />
     <svg
-        v-if="source != 'placeholder' && finalSource"
-        class="Polaris-Icon__Svg"
-        :viewBox="finalSource.viewBox"
-        v-html="finalSource.body"/>
-</span>
+      v-if="source != 'placeholder' && finalSource"
+      class="Polaris-Icon__Svg"
+      :viewBox="finalSource.viewBox"
+      v-html="finalSource.body"
+    />
+  </span>
 </template>
 
 
 <script>
-import SvgSource from '../SvgSource.js';
+import SvgSource from '../SvgSource.js'
 
 import {
     add,
@@ -57,7 +64,7 @@ import {
     search,
     subtract,
     view,
-} from '../resources/icons/';
+} from '../resources/icons/'
 
 export const BUNDLED_ICONS = {
     add,
@@ -103,7 +110,7 @@ export const BUNDLED_ICONS = {
     search,
     subtract,
     view,
-};
+}
 
 export default {
     props: {
@@ -121,31 +128,31 @@ export default {
     },
     computed: {
         finalSource() {
-            var svgSource = this.source;
+            var svgSource = this.source
             if (typeof this.source == 'string') {
-                const bundled = BUNDLED_ICONS[this.source];
+                const bundled = BUNDLED_ICONS[this.source]
                 if (bundled) {
-                    svgSource = bundled;
+                    svgSource = bundled
                 }
             }
             try {
-                var svgObject = SvgSource.parseSVG(svgSource);
-                return svgObject;
+                var svgObject = SvgSource.parseSVG(svgSource)
+                return svgObject
             } catch (e) {
-                return null;
+                return null
             }
         },
         classes() {
             var r = {
                 'Polaris-Icon': true,
                 'Polaris-Icon--hasBackdrop': this.backdrop
-            };
-            if (this.color) {
-                var valueTag = this.color.charAt(0).toUpperCase()+this.color.slice(1);
-                r['Polaris-Icon--color'+valueTag] = true;
             }
-            return r;
+            if (this.color) {
+                var valueTag = this.color.charAt(0).toUpperCase()+this.color.slice(1)
+                r['Polaris-Icon--color'+valueTag] = true
+            }
+            return r
         }
     }
-};
+}
 </script>

@@ -1,15 +1,21 @@
 <template>
-<dynamic-tag :tag="element" :class="classes">
-    <slot></slot>
-</dynamic-tag>
+  <dynamic-tag
+    :tag="element"
+    :class="classes"
+  >
+    <slot />
+  </dynamic-tag>
 </template>
 
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
-import DynamicTag from './DynamicTag.vue';
+import ComponentHelpers from '../ComponentHelpers.js'
+import DynamicTag from './DynamicTag.vue'
 
 export default {
+    components: {
+        DynamicTag
+    },
     props: {
         element: {
             type: String,
@@ -25,7 +31,7 @@ export default {
                     'medium',
                     'large',
                     'extraLarge'
-                ].indexOf(v) !== -1;
+                ].indexOf(v) !== -1
             }
         }
     },
@@ -33,11 +39,8 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-DisplayText', [
                 'size',
-            ], this);
+            ], this)
         }
-    },
-    components: {
-        DynamicTag
     }
 }
 </script>

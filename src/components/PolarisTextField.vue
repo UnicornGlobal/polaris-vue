@@ -1,100 +1,113 @@
 <template>
-<polaris-labelled
-    :label="label"
+  <polaris-labelled
     :id="realId"
+    :label="label"
     :error="error"
     :action="labelAction"
     :label-hidden="labelHidden"
-    :help-text="helpText">
-    <template v-if="$slots.helpText" slot="helpText">
-        <slot name="helpText"></slot>
+    :help-text="helpText"
+  >
+    <template
+      v-if="$slots.helpText"
+      slot="helpText"
+    >
+      <slot name="helpText" />
     </template>
     <polaris-connected>
-        <template slot="left">
-            <slot name="connectedLeft">{{ connectedLeft }}</slot>
-        </template>
-        <template slot="right">
-            <slot name="connectedRight">{{ connectedRight }}</slot>
-        </template>
-        <div 
-            :class="classes"
-            @focus="onFocus"
-            @blur="onBlur"
-            @click="onClick">
-            <div v-if="prefix"
-                 class="Polaris-TextField__Prefix"
-                 :id="realId+'Prefix'">
-                {{ prefix}}
-            </div>
-            
-            <dynamic-tag 
-                :tag="multiline ? 'textarea' : 'input'"
-                :name="name"
-                :id="realId"
-                :type="type"
-                :disabled="disabled"
-                :readonly="readOnly"
-                :autofocus="autoFocus"
-                :value="value"
-                :placeholder="placeholder"
-                :on="{ 
-                    change: handleChange
-                }"
-                :style="{ height: (multiline && height) ? height+'px' : null }"
-                :autocomplete="autoComplete"
-                class="Polaris-TextField__Input"
-                ref="input"
-                :aria-describedby="describedBy"
-                :aria-labelledby="labelledBy"
-                :aria-invalid="Boolean(error)">
-            </dynamic-tag>
-            
-            <div v-if="suffix"
-                 class="Polaris-TextField__Suffix"
-                 :id="realId+'Suffix'">
-                {{ suffix }}
-            </div>
-            
-            <polaris-text-field-spinner
-                v-if="type === 'number' && !disabled"
-                @change="handleNumberChange">
-            </polaris-text-field-spinner>
-            
-            <div class="Polaris-TextField__Backdrop"></div>
-            
-            <polaris-text-field-resizer
-                v-if="multiline"
-                :contents="value || placeholder"
-                :current-height="height"
-                :minimum-lines="(typeof multiline === 'number') ? multiline : 1"
-                @heightchange="handleExpandingResize">
-            </polaris-text-field-resizer>
+      <template slot="left">
+        <slot name="connectedLeft">
+          {{ connectedLeft }}
+        </slot>
+      </template>
+      <template slot="right">
+        <slot name="connectedRight">
+          {{ connectedRight }}
+        </slot>
+      </template>
+      <div
+        :class="classes"
+        @focus="onFocus"
+        @blur="onBlur"
+        @click="onClick"
+      >
+        <div
+          v-if="prefix"
+          :id="realId+'Prefix'"
+          class="Polaris-TextField__Prefix"
+        >
+          {{ prefix }}
         </div>
+
+        <dynamic-tag
+          :id="realId"
+          ref="input"
+          :tag="multiline ? 'textarea' : 'input'"
+          :name="name"
+          :type="type"
+          :disabled="disabled"
+          :readonly="readOnly"
+          :autofocus="autoFocus"
+          :value="value"
+          :placeholder="placeholder"
+          :on="{
+            change: handleChange
+          }"
+          :style="{ height: (multiline && height) ? height+'px' : null }"
+          :autocomplete="autoComplete"
+          class="Polaris-TextField__Input"
+          :aria-describedby="describedBy"
+          :aria-labelledby="labelledBy"
+          :aria-invalid="Boolean(error)"
+        />
+
+        <div
+          v-if="suffix"
+          :id="realId+'Suffix'"
+          class="Polaris-TextField__Suffix"
+        >
+          {{ suffix }}
+        </div>
+
+        <polaris-text-field-spinner
+          v-if="type === 'number' && !disabled"
+          @change="handleNumberChange"
+        />
+
+        <div class="Polaris-TextField__Backdrop" />
+
+        <polaris-text-field-resizer
+          v-if="multiline"
+          :contents="value || placeholder"
+          :current-height="height"
+          :minimum-lines="(typeof multiline === 'number') ? multiline : 1"
+          @heightchange="handleExpandingResize"
+        />
+      </div>
     </polaris-connected>
-</polaris-labelled>
+  </polaris-labelled>
 </template>
 
 
 <script>
-import PolarisTextFieldResizer from './PolarisTextFieldResizer.vue';
-import PolarisTextFieldSpinner from './PolarisTextFieldSpinner.vue';
-import PolarisLabelled from './PolarisLabelled.vue';
-import PolarisConnected from './PolarisConnected.vue';
-import DynamicTag from './DynamicTag.vue';
+import PolarisTextFieldResizer from './PolarisTextFieldResizer.vue'
+import PolarisTextFieldSpinner from './PolarisTextFieldSpinner.vue'
+import PolarisLabelled from './PolarisLabelled.vue'
+import PolarisConnected from './PolarisConnected.vue'
+import DynamicTag from './DynamicTag.vue'
 
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
-    model: {
-        prop: 'value',
-        event: 'change'
-    },
     components: {
         DynamicTag,
         PolarisTextFieldResizer,
         PolarisTextFieldSpinner,
         PolarisLabelled,
         PolarisConnected,
+    },
+    model: {
+        prop: 'value',
+        event: 'change'
     },
     props: {
         prefix: String,
@@ -129,40 +142,31 @@ export default {
         return {
             height: null,
             focus: false,
-        };
-    },
-    watch: {
-        focused() {
-            if (this.focused && !this.focus) {
-                this.$refs.input.focus();
-            } else if (!this.focused && this.focus) {
-                this.$refs.input.blur();
-            }
         }
     },
     computed: {
         realId() {
-            return this.id || 'PolarisTextField'+this._uid;
+            return this.id || 'PolarisTextField'+this._uid
         },
         describedBy() {
-            var r = [];
+            var r = []
             if (this.error && typeof this.error === 'string') {
-                r.push(this.realId+'Error');
+                r.push(this.realId+'Error')
             }
             if (this.helpText) {
-                r.push(this.realId+'HelpText');
+                r.push(this.realId+'HelpText')
             }
-            return r.join(' ');
+            return r.join(' ')
         },
         labelledBy() {
-            var r = [];
+            var r = []
             if (this.prefix) {
-                r.push(this.realId+'Prefix');
+                r.push(this.realId+'Prefix')
             }
             if (this.suffix) {
-                r.push(this.realId+'Suffix');
+                r.push(this.realId+'Suffix')
             }
-            return r.join(' ');
+            return r.join(' ')
         },
         classes() {
             var r = ComponentHelpers.makeComponentClass('Polaris-TextField', [
@@ -170,56 +174,65 @@ export default {
                 'readOnly',
                 'multiline',
                 'focus',
-            ], this);
-            
+            ], this)
+
             if (this.error) {
-                r['Polaris-TextField--error'] = true;
+                r['Polaris-TextField--error'] = true
             }
-            
+
             if (this.value) {
-                r['Polaris-TextField--hasValue'] = true;
+                r['Polaris-TextField--hasValue'] = true
             }
-            
-            return r;
+
+            return r
+        }
+    },
+    watch: {
+        focused() {
+            if (this.focused && !this.focus) {
+                this.$refs.input.focus()
+            } else if (!this.focused && this.focus) {
+                this.$refs.input.blur()
+            }
         }
     },
     methods: {
         onFocus() {
-            this.focus = true;
-            this.$emit('focus');
+            this.focus = true
+            this.$emit('focus')
         },
         onBlur() {
-            this.focus = false;
-            this.$emit('blur');
+            this.focus = false
+            this.$emit('blur')
         },
         onClick() {
-            this.$refs.input.focus();
+            this.$refs.input.focus()
         },
         handleExpandingResize(e) {
-            this.height = e;
+            this.height = e
         },
         handleChange(e) {
-            console.log('newValue', e);
-            var target = e.target || e.srcElement;
-            this.$emit('change', target.value);
+            console.log('newValue', e)
+            var target = e.target || e.srcElement
+            this.$emit('change', target.value)
         },
         handleInputFocus() {
-            this.$refs.input.focus();
+            this.$refs.input.focus()
         },
         handleNumberChange(steps) {
-            const numericValue = this.value ? parseFloat(this.value) : 0;
-            if (isNaN(numericValue)) { return; }
-            
-            var min = this.min || -Infinity;
-            var max = this.max || +Infinity;
-            var step = this.step || 1;
-            
-            const newValue = Math.min(max, Math.max(min, numericValue + (steps * step)));
-            console.log('newValue', newValue);
-            console.log('numericValue', numericValue);
-            this.$emit('change', newValue);
+            const numericValue = this.value ? parseFloat(this.value) : 0
+            if (isNaN(numericValue)) { return }
+
+            var min = this.min || -Infinity
+            var max = this.max || +Infinity
+            var step = this.step || 1
+
+            const newValue = Math.min(max, Math.max(min, numericValue + (steps * step)))
+            console.log('newValue', newValue)
+            console.log('numericValue', numericValue)
+            this.$emit('change', newValue)
         }
     }
-    
-};
+
+}
 </script>

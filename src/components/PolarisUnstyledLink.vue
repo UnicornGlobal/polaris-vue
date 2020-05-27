@@ -1,12 +1,13 @@
 <template>
-<a :href="url"
-   :target="external ? '_blank' : ''"
-   :rel="external ? 'noopener noreferrer' : ''"
-   data-polaris-unstyled="true"
-   @click="onClick"
->
-    <slot></slot>
-</a>
+  <a
+    :href="url"
+    :target="external ? '_blank' : ''"
+    :rel="external ? 'noopener noreferrer' : ''"
+    data-polaris-unstyled="true"
+    @click="onClick"
+  >
+    <slot />
+  </a>
 </template>
 
 <script>
@@ -18,9 +19,9 @@ export default {
     methods: {
         onClick(e) {
             if (this.disabled) {
-                return;
+                return
             }
-            this.$emit('click', e);
+            this.$emit('click', e)
         },
     }
 }

@@ -1,10 +1,10 @@
 <template>
-<p class="Polaris-Caption">
-    <slot></slot>
-</p>
+  <p class="Polaris-Caption">
+    <slot />
+  </p>
 </template>
 
 <script>
 export default {
-};
+}
 </script>

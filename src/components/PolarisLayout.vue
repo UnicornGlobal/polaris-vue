@@ -1,14 +1,20 @@
 <template>
-<div class="Polaris-Layout">
-    <template v-if="sectioned" v-for="slot, name in $slots">
-        <polaris-layout-section>
-            <slot :name="name"></slot>
-        </polaris-layout-section>
+  <div class="Polaris-Layout">
+    <template
+      v-for="slot, name in $slots"
+      v-if="sectioned"
+    >
+      <polaris-layout-section>
+        <slot :name="name" />
+      </polaris-layout-section>
     </template>
-    <template v-if="!sectioned" v-for="slot, name in $slots">
-        <slot :name="name"></slot>
+    <template
+      v-for="slot, name in $slots"
+      v-if="!sectioned"
+    >
+      <slot :name="name" />
     </template>
-</div>
+  </div>
 </template>
 
 <script>
@@ -16,5 +22,5 @@ export default {
     props: {
         sectioned: Boolean,
     }
-};
+}
 </script>

@@ -1,140 +1,150 @@
 <template>
-<polaris-labelled
+  <polaris-labelled
     :id="realId"
     :label="label"
     :error="error"
     :action="labelAction"
     :label-hidden="(labelInline) ? true : labelHidden"
-    :help-text="helpText">
-    <template v-if="$slots.helpText" slot="helpText">
-        <slot name="helpText"></slot>
+    :help-text="helpText"
+  >
+    <template
+      v-if="$slots.helpText"
+      slot="helpText"
+    >
+      <slot name="helpText" />
     </template>
 
     <div :class="classes">
-        <select
-            :id="realId"
-            :name="name"
-            :value="value"
-            class="Polaris-Select__Input"
-            :disabled="disabled"
-            @focus="onFocus"
-            @blur="onBlur"
-            @change="onChange"
-            :aria-invalid="!!error"
-            :aria-describedby="describedBy">
+      <select
+        :id="realId"
+        :name="name"
+        :value="value"
+        class="Polaris-Select__Input"
+        :disabled="disabled"
+        :aria-invalid="!!error"
+        :aria-describedby="describedBy"
+        @focus="onFocus"
+        @blur="onBlur"
+        @change="onChange"
+      >
+        <option
+          v-if="!value && placeholder"
+          :label="placeholder"
+          :value="null"
+          disabled
+          hidden
+        />
+
+        <template v-if="options">
+          <template v-for="option in options">
             <option
-                v-if="!value && placeholder"
-                :label="placeholder"
-                :value="null"
-                disabled
-                hidden>
+              v-if="typeof option == 'string'"
+              :key="option"
+              :value="option"
+            >
+              {{ option }}
             </option>
-
-            <template v-if="options">
-                <template v-for="option in options">
-                    <option
-                        v-if="typeof option == 'string'"
-                        :key="option"
-                        :value="option">
-                        {{ option }}
-                    </option>
-                    <option
-                        v-if="typeof option != 'string'"
-                        :key="option.value"
-                        :value="option.value"
-                        :disabled="option.disabled">
-                        {{ option.label }}
-                    </option>
-                </template>
+            <option
+              v-if="typeof option != 'string'"
+              :key="option.value"
+              :value="option.value"
+              :disabled="option.disabled"
+            >
+              {{ option.label }}
+            </option>
+          </template>
+        </template>
+        <template v-if="!options && groups">
+          <template v-for="group in groups">
+            <template v-if="!group.hasOwnProperty('title')">
+              <template v-for="option in group">
+                <option
+                  v-if="typeof option == 'string'"
+                  :key="option"
+                  :value="option"
+                >
+                  {{ option }}
+                </option>
+                <option
+                  v-if="typeof option != 'string'"
+                  :key="option.value"
+                  :value="option.value"
+                  :disabled="option.disabled"
+                >
+                  {{ option.label }}
+                </option>
+              </template>
             </template>
-            <template v-if="!options && groups">
-                <template v-for="group in groups">
-                    <template v-if="!group.hasOwnProperty('title')">
-                        <template v-for="option in group">
-                            <option
-                                v-if="typeof option == 'string'"
-                                :key="option"
-                                :value="option">
-                                {{ option }}
-                            </option>
-                            <option
-                                v-if="typeof option != 'string'"
-                                :key="option.value"
-                                :value="option.value"
-                                :disabled="option.disabled">
-                                {{ option.label }}
-                            </option>
-                        </template>
-                    </template>
-                    <template v-if="group.hasOwnProperty('title')">
-                        <optgroup
-                            :label="group.title"
-                            :key="group.title">
-                            <template v-for="option in group.options">
-                                <option
-                                    v-if="typeof option == 'string'"
-                                    :key="option"
-                                    :value="option">
-                                    {{ option }}
-                                </option>
-                                <option
-                                    v-if="typeof option != 'string'"
-                                    :key="option.value"
-                                    :value="option.value"
-                                    :disabled="option.disabled">
-                                    {{ option.label }}
-                                </option>
-                            </template>
-                        </optgroup>
-                    </template>
+            <template v-if="group.hasOwnProperty('title')">
+              <optgroup
+                :key="group.title"
+                :label="group.title"
+              >
+                <template v-for="option in group.options">
+                  <option
+                    v-if="typeof option == 'string'"
+                    :key="option"
+                    :value="option"
+                  >
+                    {{ option }}
+                  </option>
+                  <option
+                    v-if="typeof option != 'string'"
+                    :key="option.value"
+                    :value="option.value"
+                    :disabled="option.disabled"
+                  >
+                    {{ option.label }}
+                  </option>
                 </template>
+              </optgroup>
             </template>
-        </select>
+          </template>
+        </template>
+      </select>
 
-        <div class="Polaris-Select__Content">
-            <span v-if="labelInline" class="Polaris-Select__InlineLabel">{{label}}</span>
-            <span class="Polaris-Select__SelectedOption">{{ (!value && placeholder) ? placeholder : selectedText }}</span>
-<!--            <span class="Polaris-Select__SelectedOption">{{(!value && placeholder) ? placeholder : value}}</span>-->
-            <div class="Polaris-Select__Icon">
-                <polaris-icon :source="arrowUpDown"></polaris-icon>
-            </div>
+      <div class="Polaris-Select__Content">
+        <span
+          v-if="labelInline"
+          class="Polaris-Select__InlineLabel"
+        >{{ label }}</span>
+        <span class="Polaris-Select__SelectedOption">{{ (!value && placeholder) ? placeholder : selectedText }}</span>
+        <!--            <span class="Polaris-Select__SelectedOption">{{(!value && placeholder) ? placeholder : value}}</span>-->
+        <div class="Polaris-Select__Icon">
+          <polaris-icon :source="arrowUpDown" />
         </div>
+      </div>
 
-        <div class="Polaris-Select__Backdrop"></div>
+      <div class="Polaris-Select__Backdrop" />
     </div>
-</polaris-labelled>
+  </polaris-labelled>
 </template>
 
 
 <script>
-import PolarisLabelled from './PolarisLabelled.vue';
-import ComponentHelpers from '../ComponentHelpers.js';
-import arrowUpDown from '../resources/arrow-up-down.svg';
+import PolarisLabelled from './PolarisLabelled.vue'
+import ComponentHelpers from '../ComponentHelpers.js'
+import arrowUpDown from '../resources/arrow-up-down.svg'
 
 export default {
-    model: {
-        prop: 'value',
-        event: 'change'
-    },
     components: {
         PolarisLabelled,
     },
-    data() {
-        return {
-            arrowUpDown: arrowUpDown,
-        };
+    model: {
+        prop: 'value',
+        event: 'change'
     },
     props: {
         options: {
             type: Array,
             default() {
-                return [];
+                return []
             }
         },
         groups: {
             type: Array,
             default() {
-                return [];
+                return []
             }
         },
         label: String,
@@ -149,62 +159,67 @@ export default {
         value: String,
         placeholder: String
     },
+    data() {
+        return {
+            arrowUpDown: arrowUpDown,
+        }
+    },
     computed: {
         realId() {
-            return this.id || 'PolarisSelect'+this._uid;
+            return this.id || 'PolarisSelect'+this._uid
         },
         classes() {
             var r = ComponentHelpers.makeComponentClass('Polaris-Select', [
                 'disabled',
-            ], this);
+            ], this)
 
             if (this.error) {
-                r['Polaris-Select--error'] = true;
+                r['Polaris-Select--error'] = true
             }
 
             if (this.value == null && this.placeholder != null) {
-                r['Polaris-Select--placeholder'] = true;
+                r['Polaris-Select--placeholder'] = true
             }
 
-            return r;
+            return r
         },
         describedBy() {
-            var r = [];
+            var r = []
             if (this.helpText || this.$slots.helpText) {
-                r.push(this.realId+'HelpText');
+                r.push(this.realId+'HelpText')
             }
             if (this.error && typeof this.error == 'string') {
-                r.push(this.realId+'Error');
+                r.push(this.realId+'Error')
             }
-            return r;
+            return r
         },
-        selectedText(){
-            let v = this.value || '';
-            if (v){
-                if(this.options){
+        selectedText() {
+            let v = this.value || ''
+            if (v) {
+                if (this.options) {
                     let option =  this.options.find( e => e.value === v)
                     if (option) {
-                        return option.label;
+                        return option.label
                     } else {
-                        return v;
+                        return v
                     }
                 }
-                return v;
+                return v
            }
         }
     },
     methods: {
         onFocus() {
-            this.$emit('focus');
+            this.$emit('focus')
         },
         onBlur() {
-            this.$emit('blur');
+            this.$emit('blur')
         },
         onChange(e) {
-            this.$emit('change', e.currentTarget.value);
+            this.$emit('change', e.currentTarget.value)
         },
     }
-};
+}
 </script>
 <style>
 

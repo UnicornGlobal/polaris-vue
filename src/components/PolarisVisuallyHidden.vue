@@ -1,7 +1,7 @@
 <template>
-<span class="Polaris-VisuallyHidden">
-    <slot></slot>
-</span>
+  <span class="Polaris-VisuallyHidden">
+    <slot />
+  </span>
 </template>
 
 <script>

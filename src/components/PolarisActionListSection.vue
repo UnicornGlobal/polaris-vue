@@ -1,26 +1,31 @@
 <template>
-<optional-tag
+  <optional-tag
     tag="li"
-    :active="hasMultipleSections">
+    :active="hasMultipleSections"
+  >
     <div :class="classes">
-        <p v-if="section.title" class="Polaris-ActionList__Title">
-            {{ section.title }}
-        </p>
-        <ul class="Polaris-ActionList__Actions">
-            <polaris-action-list-item
-                v-for="(item, i) in section.items"
-                :key="`action_${i}`"
-                :content="item.content"
-                :action="wrapAction(item)"/>
-        </ul>
+      <p
+        v-if="section.title"
+        class="Polaris-ActionList__Title"
+      >
+        {{ section.title }}
+      </p>
+      <ul class="Polaris-ActionList__Actions">
+        <polaris-action-list-item
+          v-for="(item, i) in section.items"
+          :key="`action_${i}`"
+          :content="item.content"
+          :action="wrapAction(item)"
+        />
+      </ul>
     </div>
-</optional-tag>
+  </optional-tag>
 </template>
 
 
 <script>
-import OptionalTag from './OptionalTag.vue';
-import PolarisActionListItem from './PolarisActionListItem.vue';
+import OptionalTag from './OptionalTag.vue'
+import PolarisActionListItem from './PolarisActionListItem.vue'
 
 export default {
     components: {
@@ -31,7 +36,7 @@ export default {
         section: {
             type: Object,
             default() {
-                return {};
+                return {}
             }
         },
         hasMultipleSections: Boolean,
@@ -41,32 +46,32 @@ export default {
             return {
                 'Polaris-ActionList__Section': 1,
                 'Polaris-ActionList__Section--withoutTitle': !this.section.title,
-            };
+            }
         },
     },
     methods: {
         wrapAction(action) {
-            var _old = action.onAction;
-            var newAction = Object.assign({}, action);
+            var _old = action.onAction
+            var newAction = Object.assign({}, action)
             if (_old) {
                 newAction.onAction = () => {
-                    _old();
-                    this.$emit('action-any-item', action);
-                };
+                    _old()
+                    this.$emit('action-any-item', action)
+                }
             }
-            return newAction;
+            return newAction
         },
         handleAction(action) {
-            var res = true;
+            var res = true
             if (action.onAction) {
-                res = action.onAction();
+                res = action.onAction()
             }
             if (res && action.url) {
-                window.location.href = action.url;
+                window.location.href = action.url
             }
 
-            this.$emit('action-any-item', action);
+            this.$emit('action-any-item', action)
         }
     }
-};
+}
 </script>

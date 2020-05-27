@@ -1,10 +1,10 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require('webpack')
+const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const onceImporter = require('node-sass-once-importer')
 
-const libraryName = 'polaris-vue';
-const libraryNameCamelCase= 'PolarisVue';
+const libraryName = 'polaris-vue'
+const libraryNameCamelCase= 'PolarisVue'
 
 module.exports = {
   entry: {
@@ -75,4 +75,4 @@ module.exports = {
   externals: {
     vue: 'vue'
   }
-};
+}

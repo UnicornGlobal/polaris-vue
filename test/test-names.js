@@ -1,22 +1,22 @@
 (function() {
     function init() {
-        
+
         Vue.use(PolarisVue, {
             componentNameFormat: function(polarisName) {
-                return 'Pol'+polarisName;
+                return 'Pol'+polarisName
             }
-        });
-        
+        })
+
         var root = new Vue({
-           el: '#app' 
-        });
+           el: '#app'
+        })
     }
-    
-    
+
+
     if (document.readyState != 'loading') {
-        init();
+        init()
     } else {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', init)
     }
-    
-})();
+
+})()

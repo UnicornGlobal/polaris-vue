@@ -1,18 +1,20 @@
 <template>
-<div :aria-hidden="!open"
-     :style="{ height: displayHeight }"
-     :class="classes"
-     ref="wrapper">
+  <div
+    ref="wrapper"
+    :aria-hidden="!open"
+    :style="{ height: displayHeight }"
+    :class="classes"
+  >
     <div ref="heightNode">
-        <slot></slot>
+      <slot />
     </div>
-</div>
+  </div>
 </template>
 
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
-import PolarisVueCollapseTransition from './transitions/CollapseTransition.vue';
+import ComponentHelpers from '../ComponentHelpers.js'
+import PolarisVueCollapseTransition from './transitions/CollapseTransition.vue'
 
 export default {
     components: {
@@ -25,16 +27,16 @@ export default {
         return {
             height: null,
             animationState: 'idle'
-        };
+        }
     },
     computed: {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-Collapsible', [
                 'open'
-            ], this);
+            ], this)
         },
         displayHeight() {
-            return this.open ? 'auto' : 0;
+            return this.open ? 'auto' : 0
         }
     }
 }

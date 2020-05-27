@@ -1,22 +1,25 @@
 <template>
-<dynamic-tag :tag="tag" class="Polaris-Subheading">
-    <slot></slot>
-</dynamic-tag>
+  <dynamic-tag
+    :tag="tag"
+    class="Polaris-Subheading"
+  >
+    <slot />
+  </dynamic-tag>
 </template>
 
 
 <script>
-import DynamicTag from './DynamicTag.vue';
+import DynamicTag from './DynamicTag.vue'
 
 export default {
+    components: {
+        DynamicTag
+    },
     props: {
         tag: {
             type: String,
             default: 'h3'
-        }  
-    },
-    components: {
-        DynamicTag
+        }
     }
 }
 </script>

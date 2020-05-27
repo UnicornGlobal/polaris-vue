@@ -1,57 +1,79 @@
 <template>
-<li>
-    <polaris-unstyled-link 
-        v-if="url" 
-        :url="url" 
-        @click="handleAction(action)" 
-        class="Polaris-ActionList__Item">
-        <template v-if="icon || image">
-            <div class="Polaris-ActionList__Content">
-                <div 
-                    role="presentation" 
-                    class="Polaris-ActionList__Image"
-                    :style="{ backgroundImage: icon ? null : 'url('+image+')'}">
-                    <polaris-icon v-if="icon" :source="icon"/>
-                </div>
-                <div class="Polaris-ActionList__Text">
-                    <slot><slot name="content">{{ content }}</slot></slot>
-                </div>
-            </div>
-        </template>
-        <template v-else>
-            {{ content }}
-        </template>
+  <li>
+    <polaris-unstyled-link
+      v-if="url"
+      :url="url"
+      class="Polaris-ActionList__Item"
+      @click="handleAction(action)"
+    >
+      <template v-if="icon || image">
+        <div class="Polaris-ActionList__Content">
+          <div
+            role="presentation"
+            class="Polaris-ActionList__Image"
+            :style="{ backgroundImage: icon ? null : 'url('+image+')'}"
+          >
+            <polaris-icon
+              v-if="icon"
+              :source="icon"
+            />
+          </div>
+          <div class="Polaris-ActionList__Text">
+            <slot>
+              <slot name="content">
+                {{ content }}
+              </slot>
+            </slot>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        {{ content }}
+      </template>
     </polaris-unstyled-link>
-    <button 
-        v-if="!url" 
-        @click="handleAction(action)" 
-        :disabled="disabled" 
-        :class="classes">
-        <template v-if="icon || image">
-            <div class="Polaris-ActionList__Content">
-                <div 
-                    role="presentation" 
-                    class="Polaris-ActionList__Image"
-                    :style="{ backgroundImage: icon ? null : 'url('+image+')'}">
-                    <polaris-icon v-if="icon" :source="icon"/>
-                </div>
-                <div class="Polaris-ActionList__Text">
-                    <slot><slot name="content">{{ content }}</slot></slot>
-                </div>
-            </div>
-        </template>
-        <template v-else>
-            <slot><slot name="content">{{ content }}</slot></slot>
-        </template>
+    <button
+      v-if="!url"
+      :disabled="disabled"
+      :class="classes"
+      @click="handleAction(action)"
+    >
+      <template v-if="icon || image">
+        <div class="Polaris-ActionList__Content">
+          <div
+            role="presentation"
+            class="Polaris-ActionList__Image"
+            :style="{ backgroundImage: icon ? null : 'url('+image+')'}"
+          >
+            <polaris-icon
+              v-if="icon"
+              :source="icon"
+            />
+          </div>
+          <div class="Polaris-ActionList__Text">
+            <slot>
+              <slot name="content">
+                {{ content }}
+              </slot>
+            </slot>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <slot>
+          <slot name="content">
+            {{ content }}
+          </slot>
+        </slot>
+      </template>
     </button>
-</li>
+  </li>
 </template>
 
 
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
-import PolarisIcon from './PolarisIcon.vue';
+import ComponentHelpers from '../ComponentHelpers.js'
+import PolarisIcon from './PolarisIcon.vue'
 
 export default {
     components: {
@@ -69,19 +91,19 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-ActionList__Item', [
                 'disabled',
-            ], this);
+            ], this)
         },
     },
     methods: {
         handleAction(action) {
-            var res = true;
+            var res = true
             if (action.onAction) {
-                res = action.onAction();
+                res = action.onAction()
             }
             if (res && action.url) {
-                window.location.href = action.url;
+                window.location.href = action.url
             }
         }
     }
-};
+}
 </script>

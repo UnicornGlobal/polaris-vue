@@ -1,11 +1,11 @@
 <template>
-<div :class="classes">
-    <slot></slot>
-</div>
+  <div :class="classes">
+    <slot />
+  </div>
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     props: {
@@ -17,7 +17,7 @@ export default {
             return ComponentHelpers.makeComponentClass('Polaris-Layout__Section', [
                 'secondary',
                 'fullWidth',
-            ], this);
+            ], this)
         }
     }
 }

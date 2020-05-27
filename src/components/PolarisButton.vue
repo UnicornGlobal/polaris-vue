@@ -1,51 +1,64 @@
 <template>
-<dynamic-tag
-        :tag="url ? 'a' : 'button'"
-        :on="{
-            click: onClick,
-            blur: onBlur,
-            focus: onFocus
-        }"
-        :type="submit? 'submit' : 'button'" 
-        :aria-label="accessibilityLabel"
-        :class="classes"
-        :data-polaris-unstyled="url ? 'true' : ''"
-        :href="url"
-        :disabled="isDisabled"
-        :target="external ? '_blank' : ''"
-        :role="loading ? 'alert' : null"
-        :aria-busy="loading ? true : null">
-    <span v-if="loading" class="Polaris-Button__Spinner">
-        <polaris-spinner size="small" :color="spinnerColor" accessibility-label="Loading"/>
+  <dynamic-tag
+    :tag="url ? 'a' : 'button'"
+    :on="{
+      click: onClick,
+      blur: onBlur,
+      focus: onFocus
+    }"
+    :type="submit? 'submit' : 'button'"
+    :aria-label="accessibilityLabel"
+    :class="classes"
+    :data-polaris-unstyled="url ? 'true' : ''"
+    :href="url"
+    :disabled="isDisabled"
+    :target="external ? '_blank' : ''"
+    :role="loading ? 'alert' : null"
+    :aria-busy="loading ? true : null"
+  >
+    <span
+      v-if="loading"
+      class="Polaris-Button__Spinner"
+    >
+      <polaris-spinner
+        size="small"
+        :color="spinnerColor"
+        accessibility-label="Loading"
+      />
     </span>
-    <span v-if="icon" class="Polaris-Button__Icon">
-        <polaris-icon :source="realIcon"></polaris-icon>
+    <span
+      v-if="icon"
+      class="Polaris-Button__Icon"
+    >
+      <polaris-icon :source="realIcon" />
     </span>
-    <span v-if="$slots.default" class="Polaris-Button__Content">
-        <slot></slot>
+    <span
+      v-if="$slots.default"
+      class="Polaris-Button__Content"
+    >
+      <slot />
     </span>
-    <span v-if="disclosure" class="Polaris-Button__Icon">
-        <polaris-icon :source="disclosureIcon"></polaris-icon>
+    <span
+      v-if="disclosure"
+      class="Polaris-Button__Icon"
+    >
+      <polaris-icon :source="disclosureIcon" />
     </span>
-</dynamic-tag>
+  </dynamic-tag>
 </template>
 
 
 <script>
-import DynamicTag from './DynamicTag.vue';
-import PolarisIcon from './PolarisIcon.vue';
-import PolarisSpinner from './PolarisSpinner.vue';
-import ComponentHelpers from '../ComponentHelpers.js';
+import DynamicTag from './DynamicTag.vue'
+import PolarisIcon from './PolarisIcon.vue'
+import PolarisSpinner from './PolarisSpinner.vue'
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     components: {
         DynamicTag,
         PolarisIcon,
         PolarisSpinner,
-    },
-    data: () => {
-        return {
-        };
     },
     props: {
         url: String,
@@ -62,7 +75,7 @@ export default {
                     'default',
                     'slim',
                     'large'
-                ].indexOf(v) !== -1;
+                ].indexOf(v) !== -1
             }
         },
         fullWidth: Boolean,
@@ -74,18 +87,22 @@ export default {
         accessibilityLabel: String,
         iconOnly: Boolean,
     },
+    data: () => {
+        return {
+        }
+    },
     computed: {
         disclosureIcon() {
-            return this.loading ? 'placeholder' : 'caretDown';
+            return this.loading ? 'placeholder' : 'caretDown'
         },
         isDisabled() {
-            return this.disabled || this.loading;
+            return this.disabled || this.loading
         },
         realIcon() {
-            return this.loading ? 'placeholder' : this.icon;
+            return this.loading ? 'placeholder' : this.icon
         },
         spinnerColor() {
-            return (this.primary || this.destructive) ? 'white' : 'inkLightest';
+            return (this.primary || this.destructive) ? 'white' : 'inkLightest'
         },
         classes() {
             var r = ComponentHelpers.makeComponentClass('Polaris-Button', [
@@ -96,30 +113,30 @@ export default {
                 'plain',
                 'size',
                 'iconOnly',
-            ], this);
+            ], this)
             if (this.isDisabled) {
-                r['Polaris-Button--disabled'] = true;
+                r['Polaris-Button--disabled'] = true
             }
-            return r;
-        }  
+            return r
+        }
     },
     methods: {
         onClick(e) {
             if (this.disabled) {
-                return;
+                return
             }
-            
-            if (this.submit) { 
-                return true; 
+
+            if (this.submit) {
+                return true
             }
-            
-            this.$emit('click', e);
+
+            this.$emit('click', e)
         },
         onFocus(e) {
-            this.$emit('focus', e);
+            this.$emit('focus', e)
         },
         onBlur(e) {
-            this.$emit('blur', e);
+            this.$emit('blur', e)
         }
     }
 }

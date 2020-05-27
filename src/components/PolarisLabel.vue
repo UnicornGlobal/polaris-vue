@@ -1,13 +1,14 @@
 <template>
-<div :class="classes">
-    <label 
-        :id="id+'Label'"
-        :for="id"
-        class="Polaris-Label__Text">
-        <slot v-if="!$slots.children">{{ children }}</slot>
-        <slot name="children"></slot>
+  <div :class="classes">
+    <label
+      :id="id+'Label'"
+      :for="id"
+      class="Polaris-Label__Text"
+    >
+      <slot v-if="!$slots.children">{{ children }}</slot>
+      <slot name="children" />
     </label>
-</div>
+  </div>
 </template>
 
 
@@ -23,13 +24,13 @@ export default {
             return {
                 'Polaris-Label': true,
                 'Polaris-Label--hidden': this.hidden
-            };
+            }
         }
     },
     methods: {
         handleAction(action) {
             if (action.onAction) {
-                action.onAction();
+                action.onAction()
             }
         }
     }

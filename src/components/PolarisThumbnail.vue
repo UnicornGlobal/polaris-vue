@@ -1,11 +1,15 @@
 <template>
-<span :class="classes">
-    <img class="Polaris-Thumbnail__Image" :src="source" :alt="alt">
-</span>
+  <span :class="classes">
+    <img
+      class="Polaris-Thumbnail__Image"
+      :src="source"
+      :alt="alt"
+    >
+  </span>
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     props: {
@@ -17,7 +21,7 @@ export default {
                     'small',
                     'medium',
                     'large',
-                ].indexOf(v) != -1;
+                ].indexOf(v) != -1
             }
         },
         source: {
@@ -33,8 +37,8 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-Thumbnail', [
                 'size',
-            ], this);
+            ], this)
         }
     }
-};
-</script> 
+}
+</script>

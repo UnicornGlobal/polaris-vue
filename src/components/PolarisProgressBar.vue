@@ -1,23 +1,25 @@
 <template>
-<div :class="classes">
-    <progress 
-        class="Polaris-ProgressBar__Progress" 
-        :value="realProgress" 
-        max="100"/>
-    <div 
-        class="Polaris-ProgressBar__Indicator"
-        role="progressbar"
-        aria-hidden="true"
-        :style="{ width: realProgress + '%' }">
-        <span class="Polaris-ProgressBar__Label">
-            {{ realProgress }}
-        </span>
+  <div :class="classes">
+    <progress
+      class="Polaris-ProgressBar__Progress"
+      :value="realProgress"
+      max="100"
+    />
+    <div
+      class="Polaris-ProgressBar__Indicator"
+      role="progressbar"
+      aria-hidden="true"
+      :style="{ width: realProgress + '%' }"
+    >
+      <span class="Polaris-ProgressBar__Label">
+        {{ realProgress }}
+      </span>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     props: {
@@ -28,7 +30,7 @@ export default {
         size: {
             type: String,
             validate(s) {
-                return ['small','medium','large'].indexOf(s) > -1;
+                return ['small','medium','large'].indexOf(s) > -1
             },
             default: 'medium',
         }
@@ -37,22 +39,22 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-ProgressBar', [
                 'size'
-            ], this);
+            ], this)
         },
         realProgress() {
-            var r = this.progress;
+            var r = this.progress
             if (r < 0) {
                 if (process.env.NODE_ENV === 'development') {
-                    console.warn('Values passed to the progress prop shouldn\'t be negative.');
+                    console.warn('Values passed to the progress prop shouldn\'t be negative.')
                 }
-                r = 0;
+                r = 0
             } else if (r > 100) {
                 if (process.env.NODE_ENV === 'development') {
-                    console.warn('Values passed to the progress prop shouldn\'t be over 100.');
+                    console.warn('Values passed to the progress prop shouldn\'t be over 100.')
                 }
-                r = 100;
+                r = 100
             }
-            return r;
+            return r
         }
     }
 

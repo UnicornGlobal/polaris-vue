@@ -1,19 +1,23 @@
 <template>
-<dynamic-tag :tag="hasMultipleSections ? 'div' : 'ul'" class="Polaris-ActionList">
+  <dynamic-tag
+    :tag="hasMultipleSections ? 'div' : 'ul'"
+    class="Polaris-ActionList"
+  >
     <polaris-action-list-section
-        v-for="(section, index) in finalSections"
-        :key="index"
-        :section="section"
-        @action-any-item="onActionAnyItem"
-        :has-multiple-sections="hasMultipleSections"/>
-</dynamic-tag>
+      v-for="(section, index) in finalSections"
+      :key="index"
+      :section="section"
+      :has-multiple-sections="hasMultipleSections"
+      @action-any-item="onActionAnyItem"
+    />
+  </dynamic-tag>
 </template>
 
 
 <script>
-import DynamicTag from './DynamicTag.vue';
-import PolarisActionListSection from './PolarisActionListSection.vue';
-import PolarisIcon from './PolarisIcon.vue';
+import DynamicTag from './DynamicTag.vue'
+import PolarisActionListSection from './PolarisActionListSection.vue'
+import PolarisIcon from './PolarisIcon.vue'
 
 export default {
     components: {
@@ -25,40 +29,40 @@ export default {
         items: {
             type: Array,
             default() {
-                return [];
+                return []
             }
         },
         sections: {
             type: Array,
             default() {
-                return [];
+                return []
             }
         },
     },
     computed: {
         finalSections() {
             if (this.items) {
-                return [{items: this.items}, ...this.sections];
+                return [{items: this.items}, ...this.sections]
             }
-            return this.sections;
+            return this.sections
         },
         hasMultipleSections() {
-            return this.finalSections.length > 0;
+            return this.finalSections.length > 0
         },
     },
     methods: {
         onActionAnyItem(action) {
-            this.$emit('action-any-item', action);
+            this.$emit('action-any-item', action)
         },
         handleAction(action) {
-            var res = true;
+            var res = true
             if (action.onAction) {
-                res = action.onAction();
+                res = action.onAction()
             }
             if (res && action.url) {
-                window.location.href = action.url;
+                window.location.href = action.url
             }
         }
     }
-};
+}
 </script>

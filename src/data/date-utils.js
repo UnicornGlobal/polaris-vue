@@ -25,6 +25,6 @@ export default {
     isSameDay(a, b) {
         return (a.getDate() == b.getDate()) &&
                (a.getMonth() == b.getMonth()) &&
-               (a.getFullYear() == b.getFullYear());
+               (a.getFullYear() == b.getFullYear())
     }
 }

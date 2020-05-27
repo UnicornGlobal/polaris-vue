@@ -1,16 +1,20 @@
 <template>
-<div :class="classes" ref="scrollArea" @scroll="$forceUpdate()">
-    <slot></slot>
-</div>
+  <div
+    ref="scrollArea"
+    :class="classes"
+    @scroll="$forceUpdate()"
+  >
+    <slot />
+  </div>
 </template>
 
 
 <script>
-const MAX_SCROLL_DISTANCE = 100;
-const DELTA_THRESHOLD = 0.2;
-const DELTA_PERCENTAGE = 0.2;
-const EVENTS_TO_LOCK = ['scroll', 'touchmove', 'wheel'];
-const PREFERS_REDUCED_MOTION = false;
+const MAX_SCROLL_DISTANCE = 100
+const DELTA_THRESHOLD = 0.2
+const DELTA_PERCENTAGE = 0.2
+const EVENTS_TO_LOCK = ['scroll', 'touchmove', 'wheel']
+const PREFERS_REDUCED_MOTION = false
 
 export default {
     props: {
@@ -24,17 +28,17 @@ export default {
     },
     computed: {
         topShadow() {
-            var scrollArea = this.$refs.scrollArea;
-            if (!scrollArea) { return false; }
-            
-            var scrollTop = scrollArea.scrollTop;
-            return scrollTop > 0;
+            var scrollArea = this.$refs.scrollArea
+            if (!scrollArea) { return false }
+
+            var scrollTop = scrollArea.scrollTop
+            return scrollTop > 0
         },
         bottomShadow() {
-            var scrollArea = this.$refs.scrollArea;
-            if (!scrollArea) { return false; }
-            
-            return !(scrollArea.scrollTop + scrollArea.clientHeight >= scrollArea.scrollHeight);
+            var scrollArea = this.$refs.scrollArea
+            if (!scrollArea) { return false }
+
+            return !(scrollArea.scrollTop + scrollArea.clientHeight >= scrollArea.scrollHeight)
         },
         classes() {
             var r = {
@@ -43,10 +47,10 @@ export default {
                 'Polaris-Scrollable--horizontal': this.horizontal,
                 'Polaris-Scrollable--hasTopShadow': this.topShadow,
                 'Polaris-Scrollable--hasBottomShadow': this.bottomShadow
-            };
-            return r;
-            
+            }
+            return r
+
         }
     }
-};
+}
 </script>

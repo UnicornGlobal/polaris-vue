@@ -1,9 +1,9 @@
 <template>
-<div :class="classes"/>
+  <div :class="classes" />
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     props: {
@@ -15,7 +15,7 @@ export default {
                     'medium',
                     'large',
                     'extraLarge',
-                ].indexOf(s) > -1;
+                ].indexOf(s) > -1
             }
         },
     },
@@ -23,10 +23,10 @@ export default {
         classes() {
             var r = ComponentHelpers.makeComponentClass('Polaris-SkeletonDisplayText', [
                 'size',
-            ], this);
-            r['Polaris-SkeletonDisplayText'] = false;
-            r['Polaris-SkeletonDisplayText__DisplayText'] = true;
-            return r;
+            ], this)
+            r['Polaris-SkeletonDisplayText'] = false
+            r['Polaris-SkeletonDisplayText__DisplayText'] = true
+            return r
         },
     },
 }

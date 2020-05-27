@@ -1,10 +1,11 @@
 <template>
-<div class="Polaris-SkeletonBodyTextContainer">
+  <div class="Polaris-SkeletonBodyTextContainer">
     <div
-        v-for="i in lines"
-        class="Polaris-SkeletonBodyText"/>
-    </div>
-</div>
+      v-for="i in lines"
+      class="Polaris-SkeletonBodyText"
+    />
+  </div>
+  </div>
 </template>
 
 <script>

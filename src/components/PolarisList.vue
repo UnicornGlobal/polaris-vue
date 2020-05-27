@@ -1,14 +1,14 @@
 <template>
-<dynamic-tag :tag="tag">
-    <slot></slot>
-</dynamic-tag>
+  <dynamic-tag :tag="tag">
+    <slot />
+  </dynamic-tag>
 </template>
 
 
 <script>
-import DynamicTag from './DynamicTag.vue';
+import DynamicTag from './DynamicTag.vue'
 
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     components: {
@@ -24,11 +24,11 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClas('Polaris-List', [
                 'type'
-            ], this);
+            ], this)
         },
         tag() {
-            return this.type == 'bullet' ? 'ul' : 'ol';
+            return this.type == 'bullet' ? 'ul' : 'ol'
         }
     }
-};
+}
 </script>

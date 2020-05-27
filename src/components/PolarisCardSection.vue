@@ -1,18 +1,21 @@
 <template>
-<div :class="classes">
-    <div v-if="title" class="Polaris-Card__SectionHeader">
-        <polaris-subheading tag="h3">
-            {{ title }}
-        </polaris-subheading>
+  <div :class="classes">
+    <div
+      v-if="title"
+      class="Polaris-Card__SectionHeader"
+    >
+      <polaris-subheading tag="h3">
+        {{ title }}
+      </polaris-subheading>
     </div>
-    <slot></slot>
-</div>
+    <slot />
+  </div>
 </template>
 
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
-import PolarisSubheading from './PolarisSubheading.vue';
+import ComponentHelpers from '../ComponentHelpers.js'
+import PolarisSubheading from './PolarisSubheading.vue'
 
 export default {
     components: {
@@ -26,7 +29,7 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-Card__Section', [
                 'subdued',
-            ], this);
+            ], this)
         }
     }
 }

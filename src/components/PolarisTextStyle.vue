@@ -1,11 +1,11 @@
 <template>
-<span :class="classes">
-    <slot></slot>
-</span>
+  <span :class="classes">
+    <slot />
+  </span>
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     props: {
@@ -17,7 +17,7 @@ export default {
                     'negative',
                     'strong',
                     'subdued'
-                ].indexOf(v) != -1;
+                ].indexOf(v) != -1
             }
         }
     },
@@ -25,8 +25,8 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-TextStyle', [
                 'variation'
-            ], this);
+            ], this)
         }
     }
-};
+}
 </script>

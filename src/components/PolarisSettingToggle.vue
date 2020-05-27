@@ -1,27 +1,29 @@
 <template>
-<polaris-card sectioned>
+  <polaris-card sectioned>
     <polaris-setting-action>
-        <template slot="children">
-            <slot></slot>
-        </template>
-        <polaris-button slot="action" 
-                        :primary="!enabled" 
-                        @click="handleAction(action)" 
-                        :url="action.url"
-                        :accessibility-label="action.accessibilityLabel"
-                        :disabled="action.disabled"
-                        :destructive="action.destructive"
-                        :icon="action.icon">
-            {{ enabled ? 'Disable' : 'Enable' }}
-        </polaris-button>
+      <template slot="children">
+        <slot />
+      </template>
+      <polaris-button
+        slot="action"
+        :primary="!enabled"
+        :url="action.url"
+        :accessibility-label="action.accessibilityLabel"
+        :disabled="action.disabled"
+        :destructive="action.destructive"
+        :icon="action.icon"
+        @click="handleAction(action)"
+      >
+        {{ enabled ? 'Disable' : 'Enable' }}
+      </polaris-button>
     </polaris-setting-action>
-</polaris-card>
+  </polaris-card>
 </template>
 
 <script>
-import PolarisCard from './PolarisCard.vue';
-import PolarisSettingAction from './PolarisSettingAction.vue';
-import PolarisButton from './PolarisButton.vue';
+import PolarisCard from './PolarisCard.vue'
+import PolarisSettingAction from './PolarisSettingAction.vue'
+import PolarisButton from './PolarisButton.vue'
 
 export default {
     components: {
@@ -36,9 +38,9 @@ export default {
     methods: {
         handleAction(action) {
             if (action.onAction) {
-                action.onAction();
+                action.onAction()
             }
         }
     }
-};
+}
 </script>

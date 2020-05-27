@@ -1,17 +1,10 @@
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
-import PolarisStackItem from './PolarisStackItem.vue';
+import ComponentHelpers from '../ComponentHelpers.js'
+import PolarisStackItem from './PolarisStackItem.vue'
 
 
 export default {
     polarisName: 'Stack',
-    render(createElement) {
-        return createElement('div', {
-            'class': this.classes,
-        }, ComponentHelpers.wrapNodesWithComponent(createElement, 
-                                                   this.$slots.default, 
-                                                   PolarisStackItem));
-    },
     props: {
         vertical: Boolean,
         wrap: Boolean,
@@ -25,7 +18,7 @@ export default {
                     'loose',
                     'extraLoose',
                     'none'
-                ].indexOf(v) != -1;
+                ].indexOf(v) != -1
             }
         },
         alignment: {
@@ -38,7 +31,7 @@ export default {
                     'center',
                     'fill',
                     'baseline'
-                ].indexOf(v) != -1;
+                ].indexOf(v) != -1
             }
         },
         distribution: {
@@ -53,7 +46,7 @@ export default {
                     'fill',
                     'baseline',
                     'fillEvenly'
-                ].indexOf(v) != -1;
+                ].indexOf(v) != -1
             }
         },
     },
@@ -64,10 +57,17 @@ export default {
                 'spacing',
                 'alignment',
                 'distribution'
-            ], this);
-            r['Polaris-Stack--noWrap'] = !this.wrap;
-            return r;
+            ], this)
+            r['Polaris-Stack--noWrap'] = !this.wrap
+            return r
         }
+    },
+    render(createElement) {
+        return createElement('div', {
+            'class': this.classes,
+        }, ComponentHelpers.wrapNodesWithComponent(createElement,
+                                                   this.$slots.default,
+                                                   PolarisStackItem))
     }
-};
+}
 </script>

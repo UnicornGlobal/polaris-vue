@@ -1,10 +1,14 @@
 <template>
-<div @blur="focused = false"
-     @focus="focused = true"
-     :class="classes">
-    <slot v-if="!$slots.children">{{ children }}</slot>
-    <slot name="children"></slot>
-</div>
+  <div
+    :class="classes"
+    @blur="focused = false"
+    @focus="focused = true"
+  >
+    <slot v-if="!$slots.children">
+      {{ children }}
+    </slot>
+    <slot name="children" />
+  </div>
 </template>
 
 <script>
@@ -17,7 +21,7 @@ export default {
                     'Left',
                     'Primary',
                     'Right',
-                ].indexOf(v) > -1;
+                ].indexOf(v) > -1
             }
         },
         children: String,
@@ -25,7 +29,7 @@ export default {
     data() {
         return {
             focused: false
-        };
+        }
     },
     computed: {
         classes() {
@@ -34,7 +38,7 @@ export default {
                 'Polaris-Connected__Item--focused': this.focused,
                 'Polaris-Connected__Item--primary': this.position == 'Primary',
                 'Polaris-Connected__Item--connection': this.position != 'Primary'
-            };
+            }
         }
     }
 }

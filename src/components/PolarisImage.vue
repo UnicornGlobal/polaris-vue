@@ -1,5 +1,9 @@
 <template>
-<img :src="source" :srcSet="finalSourceSet" :alt="alt">
+  <img
+    :src="source"
+    :srcSet="finalSourceSet"
+    :alt="alt"
+  >
 </template>
 
 <script>
@@ -10,14 +14,14 @@ export default {
         sourceSet: {
             type: Array,
             default() {
-                return [];
+                return []
             }
         }
     },
     computed: {
         finalSourceSet() {
-            return this.sourceSet.map((item) => item.source + ' ' + item.descriptor).join(',');
+            return this.sourceSet.map((item) => item.source + ' ' + item.descriptor).join(',')
         }
     }
-};
+}
 </script>

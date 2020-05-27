@@ -4,29 +4,29 @@ var map = {
     2: 'WARN',
     3: 'ERROR',
     4: 'FATAL'
-};
+}
 
 class LogLevel {
     getMap() {
-        return map;
+        return map
     }
-    
+
     levelToString(level) {
-        return map[level];
+        return map[level]
     }
 
     stringToLevel(str) {
         for (let key in map) {
             if (map[key] == str) {
-                return key;
+                return key
             }
         }
-        return null;
+        return null
     }
 }
 
 for (var key in map) {
-    LogLevel.prototype[map[key]] = key;
+    LogLevel.prototype[map[key]] = key
 }
 
-export default new LogLevel();
+export default new LogLevel()

@@ -1,22 +1,23 @@
 <template>
-<button
+  <button
     ref="button"
-    @focus="onFocus"
     :tabindex="tabIndex"
     :class="classes"
-    @mouseover="handleHover"
-    @click="handleClick"
     :aria-label="accessibilityLabel"
     :aria-selected="selected"
     :aria-disabled="disabled"
-    role="gridcell">
+    role="gridcell"
+    @focus="onFocus"
+    @mouseover="handleHover"
+    @click="handleClick"
+  >
     {{ dayNumber }}
-</button>
+  </button>
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
-import dateUtils from '../data/date-utils.js';
+import ComponentHelpers from '../ComponentHelpers.js'
+import dateUtils from '../data/date-utils.js'
 
 export default {
     props: {
@@ -29,55 +30,55 @@ export default {
     },
     computed: {
         dayNumber() {
-            return this.day ? this.day.getDate() : null;
+            return this.day ? this.day.getDate() : null
         },
         today() {
-            return dateUtils.isSameDay(this.day, new Date());
+            return dateUtils.isSameDay(this.day, new Date())
         },
         accessibilityLabel() {
-            if (!this.day) { return null; }
+            if (!this.day) { return null }
             return [
                 this.today ? 'Today' : '',
                 dateUtils.months[this.day.getMonth()],
                 this.day.getDate(),
                 this.day.getFullYear()
-            ].join(' ');
+            ].join(' ')
         },
         classes() {
             if (!this.day) {
-                return 'Polaris-DatePicker__EmptyDay';
+                return 'Polaris-DatePicker__EmptyDay'
             }
             var r = ComponentHelpers.makeComponentClass('Polaris-DatePicker__Day', [
                 'selected',
                 'disabled',
                 'today',
-            ], this);
-            
+            ], this)
+
             if ((this.inRange || this.inHoveringRange) && !this.disabled) {
-                r['Polaris-DatePicker__Day--inRange'] = true;
+                r['Polaris-DatePicker__Day--inRange'] = true
             }
-            return r;
+            return r
         },
         tabIndex() {
             if ((this.focused || this.selected || this.day === 1) && !this.disabled) {
-                return 0;
+                return 0
             }
-            return -1;
+            return -1
         }
     },
     methods: {
         onFocus() {
-            this.$emit('focus', this.day);
+            this.$emit('focus', this.day)
         },
         handleHover() {
-            this.$emit('hover', this.day);
+            this.$emit('hover', this.day)
         },
         handleClick() {
             if (!this.disabled) {
-                this.$emit('click', this.day);
+                this.$emit('click', this.day)
             }
         }
-        
+
     }
 }
 </script>

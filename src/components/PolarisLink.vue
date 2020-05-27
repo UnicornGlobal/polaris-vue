@@ -1,10 +1,12 @@
 <template>
-<a class="Polaris-Link" 
-   :href="url" 
-   :target="external ? '_blank' : ''"
-   @click="onClick">
-    <slot></slot>
-</a>
+  <a
+    class="Polaris-Link"
+    :href="url"
+    :target="external ? '_blank' : ''"
+    @click="onClick"
+  >
+    <slot />
+  </a>
 </template>
 
 <script>
@@ -15,8 +17,8 @@ export default {
     },
     methods: {
         onClick(e) {
-            this.$emit('click', e);
+            this.$emit('click', e)
         }
     }
-};
+}
 </script>

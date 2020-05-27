@@ -1,18 +1,21 @@
 <template>
-<div class="Polaris-ColorPicker__HuePicker" ref="picker">
+  <div
+    ref="picker"
+    class="Polaris-ColorPicker__HuePicker"
+  >
     <polaris-color-picker-slidable
-        :dragger-y="offset"
-        :dragger-x="0"
-        @change="handleChange"
-        @draggerheight="handleDraggerHeight">
-    </polaris-color-picker-slidable>
-</div>
+      :dragger-y="offset"
+      :dragger-x="0"
+      @change="handleChange"
+      @draggerheight="handleDraggerHeight"
+    />
+  </div>
 </template>
 
 <script>
-import PolarisColorPickerSlidable from './PolarisColorPickerSlidable.vue';
+import PolarisColorPickerSlidable from './PolarisColorPickerSlidable.vue'
 
-const VERTICAL_PADDING = 13;
+const VERTICAL_PADDING = 13
 
 export default {
     components: {
@@ -30,33 +33,33 @@ export default {
             dragging: false,
             sliderHeight: 0,
             draggerHeight: 0
-        };
-    },
-    mounted() {
-        this.sliderHeight = this.$refs.picker.clientHeight;
+        }
     },
     computed: {
         offset() {
-            return this.offsetForHue(this.hue, this.sliderHeight, this.draggerHeight);
+            return this.offsetForHue(this.hue, this.sliderHeight, this.draggerHeight)
         }
+    },
+    mounted() {
+        this.sliderHeight = this.$refs.picker.clientHeight
     },
     methods: {
         handleDraggerHeight(e) {
-            this.draggerHeight = e;
+            this.draggerHeight = e
         },
         handleChange(e) {
-            this.$emit('change', this.hueForOffset(e.y, this.sliderHeight));
+            this.$emit('change', this.hueForOffset(e.y, this.sliderHeight))
         },
         offsetForHue(hue, sliderHeight, draggerHeight) {
-            const slidableArea = sliderHeight - (VERTICAL_PADDING);
-            return Math.max(VERTICAL_PADDING, Math.min(sliderHeight - draggerHeight, (hue / 360 * slidableArea)));
+            const slidableArea = sliderHeight - (VERTICAL_PADDING)
+            return Math.max(VERTICAL_PADDING, Math.min(sliderHeight - draggerHeight, (hue / 360 * slidableArea)))
         },
         hueForOffset(offset, sliderHeight) {
-            const selectionHeight = offset - VERTICAL_PADDING;
-            const slidableArea = sliderHeight - (2 * VERTICAL_PADDING);
-            return Math.max(0, Math.min(360, (selectionHeight / slidableArea) * 360));
+            const selectionHeight = offset - VERTICAL_PADDING
+            const slidableArea = sliderHeight - (2 * VERTICAL_PADDING)
+            return Math.max(0, Math.min(360, (selectionHeight / slidableArea) * 360))
         }
     }
-    
-};
+
+}
 </script>

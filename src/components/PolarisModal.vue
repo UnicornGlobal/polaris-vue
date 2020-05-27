@@ -1,43 +1,51 @@
 <template>
-    <transition name="modal">
-        <div class="modal-mask">
-            <div class="modal-wrapper" @click="$emit('close')">
-                <div class="modal-container" @click.stop>
-
-                    <div class="modal-header">
-                        <slot name="header">
-                            default header
-                        </slot>
-                        <div class="close-icon" @click="$emit('close')">
-                            <polaris-icon :source="cancelSmall"></polaris-icon>
-                        </div>
-                    </div>
-
-                    <div class="modal-body">
-                        <slot name="body">
-                            default body
-                        </slot>
-                    </div>
-
-                    <div class="modal-footer" v-if="hasFooter">
-                        <slot name="footer">
-                            default footer
-                        </slot>
-                    </div>
-                </div>
+  <transition name="modal">
+    <div class="modal-mask">
+      <div
+        class="modal-wrapper"
+        @click="$emit('close')"
+      >
+        <div
+          class="modal-container"
+          @click.stop
+        >
+          <div class="modal-header">
+            <slot name="header">
+              default header
+            </slot>
+            <div
+              class="close-icon"
+              @click="$emit('close')"
+            >
+              <polaris-icon :source="cancelSmall" />
             </div>
+          </div>
+
+          <div class="modal-body">
+            <slot name="body">
+              default body
+            </slot>
+          </div>
+
+          <div
+            v-if="hasFooter"
+            class="modal-footer"
+          >
+            <slot name="footer">
+              default footer
+            </slot>
+          </div>
         </div>
-    </transition>
+      </div>
+    </div>
+  </transition>
 </template>
 
 
 <script>
-    import PolarisIcon from './PolarisIcon.vue';
-    import cancelSmall from '../resources/cancel-small.svg';
+    import PolarisIcon from './PolarisIcon.vue'
+    import cancelSmall from '../resources/cancel-small.svg'
     export default {
-        mounted(){
-          console.log( 'Modal Mounted V2' );
-        },
         components: {
             PolarisIcon
         },
@@ -50,12 +58,15 @@
         data() {
             return {
                 cancelSmall: cancelSmall
-            };
+            }
+        },
+        mounted() {
+          console.log( 'Modal Mounted V2' )
         },
         methods: {
 
         }
-    };
+    }
 </script>
 <style>
     .modal-mask {

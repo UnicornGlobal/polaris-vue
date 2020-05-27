@@ -1,12 +1,13 @@
 <template>
-<transition
+  <transition
     name="PolarisVue-FadeUpTransition"
     enter-active-class="PolarisVue-FadeUpTransition--show"
     leave-active-class="PolarisVue-FadeUpTransition--show"
     enter-class="PolarisVue-FadeUpTransition--hide"
-    leave-to-class="PolarisVue-FadeUpTransition--hide">
-    <slot></slot>
-</transition>
+    leave-to-class="PolarisVue-FadeUpTransition--hide"
+  >
+    <slot />
+  </transition>
 </template>
 
 <script>

@@ -1,24 +1,25 @@
 <template>
-<div :class="classes">
+  <div :class="classes">
     <polaris-page-header
-        :title="title"
-        :icon="icon"
-        :breadcrumbs="breadcrumbs"
-        :separator="separator"
-        :primary-action="primaryAction"
-        :secondary-actions="secondaryActions"
-        :pagination="pagination"
-        :action-groups="actionGroups"/>
+      :title="title"
+      :icon="icon"
+      :breadcrumbs="breadcrumbs"
+      :separator="separator"
+      :primary-action="primaryAction"
+      :secondary-actions="secondaryActions"
+      :pagination="pagination"
+      :action-groups="actionGroups"
+    />
 
     <div class="Polaris-Page__Content">
-        <slot></slot>
+      <slot />
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
-import PolarisPageHeader from './PolarisPageHeader.vue';
+import ComponentHelpers from '../ComponentHelpers.js'
+import PolarisPageHeader from './PolarisPageHeader.vue'
 
 export default {
     components: {
@@ -33,7 +34,7 @@ export default {
         breadcrumbs: {
             type: Array,
             default() {
-                return [];
+                return []
             }
         },
         fullWidth: Boolean,
@@ -41,7 +42,7 @@ export default {
         secondaryActions: {
             type: Array,
             default() {
-                return [];
+                return []
             }
         },
         separator: Boolean,
@@ -53,31 +54,31 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-Page', [
                 'fullWidth'
-            ], this);
+            ], this)
         },
         headerClasses() {
             var r = {
                 'Polaris-Page__Header': true
-            };
+            }
             if (this.breadcrumbs.length > 0) {
-                r['Polaris-Page__Header--hasBreadcrumbs'] = true;
+                r['Polaris-Page__Header--hasBreadcrumbs'] = true
             }
             if (this.pagination) {
-                r['Polaris-Page__Header--hasPagination'] = true;
+                r['Polaris-Page__Header--hasPagination'] = true
             }
 
-            return r;
+            return r
         }
     },
     methods: {
         handleAction(action, handleUrl) {
             if (action.onAction) {
-                action.onAction();
+                action.onAction()
             }
             if (handleUrl && action.url) {
-                window.location.href = action.url;
+                window.location.href = action.url
             }
         }
     }
-};
+}
 </script>

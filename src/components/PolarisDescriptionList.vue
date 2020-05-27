@@ -1,14 +1,14 @@
 <template>
-<dl class="Polaris-DescriptionList">
+  <dl class="Polaris-DescriptionList">
     <template v-for="item in items">
-        <dt class="Polaris-DescriptionList__Term">
-            {{ item.term }}
-        </dt>
-        <dd class="Polaris-DescriptionList__Description">
-            {{ item.description }}
-        </dd>
+      <dt class="Polaris-DescriptionList__Term">
+        {{ item.term }}
+      </dt>
+      <dd class="Polaris-DescriptionList__Description">
+        {{ item.description }}
+      </dd>
     </template>
-</dl>
+  </dl>
 </template>
 
 
@@ -18,9 +18,9 @@ export default {
         items: {
             type: Array,
             default() {
-                return [];
+                return []
             }
         }
     }
-};
+}
 </script>

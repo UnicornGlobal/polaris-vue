@@ -1,74 +1,74 @@
-import changeCase from 'change-case';
+import changeCase from 'change-case'
 
 class ComponentHelpers {
     constructor() {
-        this.componentNameFormat = name => name;
+        this.componentNameFormat = name => name
     }
-    
+
     setComponentNameFormat(format) {
-        this.componentNameFormat = format;
+        this.componentNameFormat = format
     }
-    
-    
+
+
     makeComponentClass(componentName, properties, state) {
-        var classes = {};
-        classes[componentName] = true;
+        var classes = {}
+        classes[componentName] = true
 
         for (var prop of properties) {
-            var value = state[prop];
-            var valueTag = '';
+            var value = state[prop]
+            var valueTag = ''
             if (value && typeof value === 'string') {
-                valueTag = value.charAt(0).toUpperCase() + value.slice(1);
+                valueTag = value.charAt(0).toUpperCase() + value.slice(1)
             }
-            classes[componentName + '--' + prop + valueTag] = state[prop];
+            classes[componentName + '--' + prop + valueTag] = state[prop]
         }
 
-        return classes;
+        return classes
     }
-    
+
     isNodeOfComponent(node, component) {
         if (!node || !node.componentOptions) {
-            return false;
+            return false
         }
-        
-        var nodeComponentTagName = node.componentOptions.tag;
-        var componentTagName = this.getComponentName(component.polarisName);
-        
-        return nodeComponentTagName == componentTagName;
+
+        var nodeComponentTagName = node.componentOptions.tag
+        var componentTagName = this.getComponentName(component.polarisName)
+
+        return nodeComponentTagName == componentTagName
     }
-    
+
     getComponentName(polarisName) {
-        return this.componentNameFormat(polarisName, changeCase);
+        return this.componentNameFormat(polarisName, changeCase)
     }
-    
+
     wrapNodesWithComponent(createElement, nodes, component, ignoredComponents = []) {
-        var children = [];
+        var children = []
         for (let node of nodes) {
             if (!node.tag && !node.text.trim()) {
-                continue;
+                continue
             }
-            
-            var added = false;
+
+            var added = false
             if (this.isNodeOfComponent(node, component)) {
-                added = true;
-                children.push(node);
+                added = true
+                children.push(node)
             } else {
                 for (let ignored of ignoredComponents) {
                     if (this.isNodeOfComponent(node, ignored)) {
-                        added = true;
-                        children.push(node);
-                        break;
+                        added = true
+                        children.push(node)
+                        break
                     }
                 }
             }
-            
+
             if (!added) {
-                children.push(createElement(component, {}, [node]));
+                children.push(createElement(component, {}, [node]))
             }
         }
-        return children;
+        return children
     }
 }
 
 
-export default new ComponentHelpers();
+export default new ComponentHelpers()

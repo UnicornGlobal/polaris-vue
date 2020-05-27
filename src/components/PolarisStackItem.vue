@@ -1,7 +1,7 @@
 <template>
-<div :class="classes">
-    <slot></slot>
-</div>
+  <div :class="classes">
+    <slot />
+  </div>
 </template>
 
 <script>
@@ -15,8 +15,8 @@ export default {
             return {
                 'Polaris-Stack__Item': true,
                 'Polaris-Stack__Item--fill': this.fill
-            };
+            }
         }
     }
-};
+}
 </script>

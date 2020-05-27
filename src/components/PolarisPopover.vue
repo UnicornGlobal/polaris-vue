@@ -1,41 +1,57 @@
 <template>
-<dynamic-tag :tag="activatorWrapper || 'div'" ref="container">
-    <slot name="activator" :activate="onActivate"></slot>
-    
+  <dynamic-tag
+    ref="container"
+    :tag="activatorWrapper || 'div'"
+  >
+    <slot
+      name="activator"
+      :activate="onActivate"
+    />
+
     <polaris-popover-overlay
-        :id="realId+'Overlay'"
-        :active="active"
-        :activator-id="activatorId"
-        :preferred-position="preferredPosition"
-        @close="onClose">
-        <template slot="overlay" scope="props">
-            <div :class="classes" ref="content">
-                <div v-if="!props.data.measuring"
-                     :style="{ left: props.data.tipPosition+'px' }"
-                     class="Polaris-Popover__Tip">
-                </div>
-                <div class="Polaris-Popover__FocusTracker"
-                     @focus="handleFocusFirstItem"
-                     tabindex="0">
-                </div>
-                <div class="Polaris-Popover__Wrapper">
-                    <slot></slot>
-                </div>
-                <div class="Polaris-Popover__FocusTracker"
-                     @focus="handleFocusLastItem"
-                     tabindex="0">
-                </div>
-            </div>  
-        </template>
+      :id="realId+'Overlay'"
+      :active="active"
+      :activator-id="activatorId"
+      :preferred-position="preferredPosition"
+      @close="onClose"
+    >
+      <template
+        slot="overlay"
+        scope="props"
+      >
+        <div
+          ref="content"
+          :class="classes"
+        >
+          <div
+            v-if="!props.data.measuring"
+            :style="{ left: props.data.tipPosition+'px' }"
+            class="Polaris-Popover__Tip"
+          />
+          <div
+            class="Polaris-Popover__FocusTracker"
+            tabindex="0"
+            @focus="handleFocusFirstItem"
+          />
+          <div class="Polaris-Popover__Wrapper">
+            <slot />
+          </div>
+          <div
+            class="Polaris-Popover__FocusTracker"
+            tabindex="0"
+            @focus="handleFocusLastItem"
+          />
+        </div>
+      </template>
     </polaris-popover-overlay>
-</dynamic-tag>
+  </dynamic-tag>
 </template>
 
 <script>
-import PolarisPopoverOverlay from './PolarisPopoverOverlay.vue';
-import DynamicTag from './DynamicTag.vue';
+import PolarisPopoverOverlay from './PolarisPopoverOverlay.vue'
+import DynamicTag from './DynamicTag.vue'
 
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     components: {
@@ -55,7 +71,7 @@ export default {
     },
     computed: {
         realId() {
-            return 'PolarisPopover'+this._uid;
+            return 'PolarisPopover'+this._uid
         },
         activatorId() {
             return this.realId+'Activator'
@@ -64,63 +80,63 @@ export default {
             var r = ComponentHelpers.makeComponentClass('Polaris-Popover', [
                 'fullWidth',
                 'measuring'
-            ], this);
+            ], this)
             if (this.positioning === 'above') {
-                r['Polaris-Popover--positionedAbove'] = true;
+                r['Polaris-Popover--positionedAbove'] = true
             }
-            return r;
+            return r
         }
     },
     mounted() {
-        this.$refs.container.$el.firstElementChild.id = this.activatorId;
-        
-        window.addEventListener('click', this.handlePageClick);
-        window.addEventListener('touchstart', this.handlePageClick);
-        document.addEventListener('keyup', this.handleKeyPress);
+        this.$refs.container.$el.firstElementChild.id = this.activatorId
+
+        window.addEventListener('click', this.handlePageClick)
+        window.addEventListener('touchstart', this.handlePageClick)
+        document.addEventListener('keyup', this.handleKeyPress)
     },
     methods: {
         findActivator() {
-            return document.getElementById(this.activatorId);
+            return document.getElementById(this.activatorId)
         },
         handleKeyPress(e) {
             if (e.keyCode != 27) {
-                return;
+                return
             }
-            this.$emit('close', 'EscapeKeypress');
+            this.$emit('close', 'EscapeKeypress')
         },
         handlePageClick(e) {
-            const target = e.target;
-            const contentNode = this.$refs.content;
+            const target = e.target
+            const contentNode = this.$refs.content
             if ((contentNode != null && this.nodeContainsDescendant(contentNode, target)) ||
                 this.nodeContainsDescendant(this.findActivator(), target) || !this.active) {
-                return;
+                return
             }
-            this.$emit('close', 'Click');
+            this.$emit('close', 'Click')
         },
         nodeContainsDescendant(haystack, needle) {
             if (haystack === needle) {
-                return true;
+                return true
             }
-            let parent = needle.parentNode;
+            let parent = needle.parentNode
             while (parent != null) {
-                if (parent === haystack) { 
-                    return true;
+                if (parent === haystack) {
+                    return true
                 }
-                parent = parent.parentNode;
+                parent = parent.parentNode
             }
-            return false;
+            return false
         },
         onActivate() {
         },
         handleFocusFirstItem() {
-            this.$emit('close', 'FocusOut');
+            this.$emit('close', 'FocusOut')
         },
         handleFocusLastItem() {
-            this.$emit('close', 'FocusOut');
+            this.$emit('close', 'FocusOut')
         },
         onClose() {
-            this.$emit('close', 'Click');
+            this.$emit('close', 'Click')
         }
     }
-};
+}
 </script>

@@ -1,29 +1,35 @@
 <template>
-<div class="Polaris-Connected">
+  <div class="Polaris-Connected">
     <polaris-connected-item
-        v-if="$slots.left || left"
-        position="Left">
-        <slot name="left">{{ left }}</slot>
+      v-if="$slots.left || left"
+      position="Left"
+    >
+      <slot name="left">
+        {{ left }}
+      </slot>
     </polaris-connected-item>
-    
+
     <polaris-connected-item position="Primary">
-        <slot v-if="!$slots.children">
-           {{ children }}
-        </slot>
-        <slot name="children"></slot>
+      <slot v-if="!$slots.children">
+        {{ children }}
+      </slot>
+      <slot name="children" />
     </polaris-connected-item>
-    
+
     <polaris-connected-item
-        v-if="$slots.right || right"
-        position="Right">
-        <slot name="right">{{ right }}</slot>
+      v-if="$slots.right || right"
+      position="Right"
+    >
+      <slot name="right">
+        {{ right }}
+      </slot>
     </polaris-connected-item>
-</div>
+  </div>
 </template>
 
 
 <script>
-import PolarisConnectedItem from './PolarisConnectedItem.vue';
+import PolarisConnectedItem from './PolarisConnectedItem.vue'
 
 
 export default {
@@ -38,7 +44,7 @@ export default {
     data() {
         return {
             focused: String
-        };
+        }
     }
-};
+}
 </script>

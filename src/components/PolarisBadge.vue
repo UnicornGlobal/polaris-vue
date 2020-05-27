@@ -1,14 +1,17 @@
 <template>
-<span :class="classes">
-    <span v-if="status != 'default'" class="Polaris-VisuallyHidden">
-        {{ status.charAt(0).toUpperCase() + status.slice(1) }}
+  <span :class="classes">
+    <span
+      v-if="status != 'default'"
+      class="Polaris-VisuallyHidden"
+    >
+      {{ status.charAt(0).toUpperCase() + status.slice(1) }}
     </span>
-    <slot></slot>
-</span>
+    <slot />
+  </span>
 </template>
 
 <script>
-import ComponentHelpers from '../ComponentHelpers.js';
+import ComponentHelpers from '../ComponentHelpers.js'
 
 export default {
     props: {
@@ -22,7 +25,7 @@ export default {
                     'info',
                     'attention',
                     'warning',
-                ].indexOf(v) != -1;
+                ].indexOf(v) != -1
             }
         }
     },
@@ -30,7 +33,7 @@ export default {
         classes() {
             return ComponentHelpers.makeComponentClass('Polaris-Badge', [
                 'status'
-            ], this);
+            ], this)
         }
     }
 }

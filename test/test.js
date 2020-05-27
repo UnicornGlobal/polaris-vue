@@ -1,13 +1,13 @@
 (function() {
     function init() {
 
-        Vue.use(PolarisVue);
+        Vue.use(PolarisVue)
 
         var root = new Vue({
             el: '#app',
             methods: {
                testAlert: function() {
-                   alert('test');
+                   alert('test')
                }
             },
             data: {
@@ -48,37 +48,37 @@
             computed: {
                 accountsAreDisabled: {
                     get() {
-                        return this.accounts == 'disabled';
+                        return this.accounts == 'disabled'
                     },
                     set(value) {
                         if (value) {
-                            this.accounts = 'disabled';
+                            this.accounts = 'disabled'
                         } else if (this.accounts == 'disabled') {
-                            this.accounts = null;
+                            this.accounts = null
                         }
                     }
                 },
                 accountsAreEnabled: {
                     get() {
-                        return this.accounts == 'enabled';
+                        return this.accounts == 'enabled'
                     },
                     set(value) {
                         if (value) {
-                            this.accounts = 'enabled';
+                            this.accounts = 'enabled'
                         } else if (this.accounts == 'enabled') {
-                            this.accounts = null;
+                            this.accounts = null
                         }
                     }
                 }
             }
-        });
+        })
     }
 
 
     if (document.readyState != 'loading') {
-        init();
+        init()
     } else {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', init)
     }
 
-})();
+})()

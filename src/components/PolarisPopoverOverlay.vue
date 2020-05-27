@@ -1,20 +1,27 @@
 <template>
-<polaris-positioned-overlay
-    
+  <polaris-positioned-overlay
+
     :full-width="fullWidth"
     :active="active"
     :preferred-position="preferredPosition"
     :activator-id="activatorId"
-    @scrollout="handleScrollOut">
-    <template slot="overlay" scope="props">
-        <slot name="overlay" :data="props"></slot>
+    @scrollout="handleScrollOut"
+  >
+    <template
+      slot="overlay"
+      scope="props"
+    >
+      <slot
+        name="overlay"
+        :data="props"
+      />
     </template>
-</polaris-positioned-overlay>
+  </polaris-positioned-overlay>
 </template>
 
 
 <script>
-import PolarisPositionedOverlay from './PolarisPositionedOverlay.vue';
+import PolarisPositionedOverlay from './PolarisPositionedOverlay.vue'
 export default {
     components: {
         PolarisPositionedOverlay
@@ -33,7 +40,7 @@ export default {
     },
     methods: {
         handleScrollOut() {
-            this.$emit('scrollout');
+            this.$emit('scrollout')
         }
     }
 }
