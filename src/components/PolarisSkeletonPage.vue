@@ -20,10 +20,13 @@
       <div class="Polaris-SkeletonPage__Actions">
         <div
           v-for="action in secondaryActions"
+          :key="action"
           class="Polaris-SkeletonPage__Action"
           :style="{ width: (Math.round(Math.random() * 40 + 60)) + 'px' }"
         >
-          <polaris-skeleton-body-text :lines="1" />
+          <polaris-skeleton-body-text
+            :lines="1"
+          />
         </div>
       </div>
     </div>

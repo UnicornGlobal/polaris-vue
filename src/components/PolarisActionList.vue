@@ -17,13 +17,11 @@
 <script>
 import DynamicTag from './DynamicTag.vue'
 import PolarisActionListSection from './PolarisActionListSection.vue'
-import PolarisIcon from './PolarisIcon.vue'
 
 export default {
     components: {
         DynamicTag,
-        PolarisActionListSection,
-        PolarisIcon,
+        PolarisActionListSection
     },
     props: {
         items: {

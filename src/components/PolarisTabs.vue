@@ -6,7 +6,8 @@
         role="tablist"
       >
         <li
-          v-for="name in tabNames"
+          v-for="(name, index) in tabNames"
+          :key="index"
           class="Polaris-Tabs__TabContainer"
           role="presentation"
         >
@@ -22,7 +23,8 @@
       </ul>
     </div>
     <div
-      v-for="name in tabNames"
+      v-for="(name, index) in tabNames"
+      :key="index"
       style="padding: 1.6rem;"
     >
       <slot

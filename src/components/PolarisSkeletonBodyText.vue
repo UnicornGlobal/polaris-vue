@@ -2,9 +2,9 @@
   <div class="Polaris-SkeletonBodyTextContainer">
     <div
       v-for="i in lines"
+      :key="i"
       class="Polaris-SkeletonBodyText"
     />
-  </div>
   </div>
 </template>
 

@@ -7,7 +7,10 @@
       {{ title }}
     </legend>
     <ul class="Polaris-ChoiceList__Choices">
-      <li v-for="choice in choices">
+      <li
+        v-for="(choice, key) in choices"
+        :key="key"
+      >
         <polaris-checkbox
           v-if="allowMultiple"
           :name="finalName"
@@ -19,7 +22,7 @@
           @change="handleChange($event, choice)"
         />
         <polaris-radio-button
-          v-if="!allowMultiple"
+          v-else
           :name="finalName"
           :value="choice.value"
           :label="choice.label"

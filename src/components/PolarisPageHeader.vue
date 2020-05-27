@@ -88,7 +88,8 @@
                   {{ action.content }}
                 </polaris-page-action>
                 <div
-                  v-for="group in actionGroups"
+                  v-for="(group, index) in actionGroups"
+                  :key="index"
                   class="Polaris-Page__ActionGroup"
                 >
                   <polaris-popover
@@ -187,7 +188,8 @@
               {{ action.content }}
             </polaris-page-action>
             <div
-              v-for="group in actionGroups"
+              v-for="(group, index) in actionGroups"
+              :key="index"
               class="Polaris-Page__ActionGroup"
             >
               <polaris-popover

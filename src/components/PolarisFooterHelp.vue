@@ -7,7 +7,6 @@
           color="teal"
           backdrop
         />
-        </span>
       </div>
       <div class="Polaris-FooterHelp__Text">
         <slot />
@@ -21,13 +20,13 @@ import helpIcon from '../resources/footer-help.svg'
 import PolarisIcon from './PolarisIcon.vue'
 
 export default {
-    components: {
-        PolarisIcon,
-    },
-    data() {
-        return {
-            helpIcon: helpIcon
-        }
+  components: {
+    PolarisIcon,
+  },
+  data() {
+    return {
+      helpIcon: helpIcon
     }
+  }
 }
 </script>
