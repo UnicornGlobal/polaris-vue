@@ -5,13 +5,13 @@ const common = require('./webpack.common.js')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   plugins: [
-    // new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new OptimizeCSSPlugin({
       cssProcessorOptions: {

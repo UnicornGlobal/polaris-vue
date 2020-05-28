@@ -49,29 +49,7 @@
     </div>
   </div>
 </template>
-<script>
-    import PolarisResourceListItem from './PolarisResourceListItem.vue'
-    import PolarisCheckbox from "./PolarisCheckbox.vue"
-    import PolarisButton from "./PolarisButton.vue"
 
-    export default {
-        components: {
-            PolarisButton,
-            PolarisCheckbox,
-            PolarisResourceListItem,
-        },
-        props: {
-        },
-        computed: {
-        },
-        created: function() {
-            console.log( this )
-        },
-        methods: {
-
-        }
-    }
-</script>
 <style>
     .Polaris-ResourceList__HeaderOuterWrapper {
         position: relative;

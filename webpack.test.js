@@ -16,7 +16,7 @@ const config = {
     umdNamedDefine: true
   },
   resolve: {
-    extensions: ['*', '.js', '.vue', '.svg', '.css'],
+    extensions: ['*', '.js', '.vue', '.svg', '.css', '.scss', '*'],
     modules: [
       path.join(__dirname, 'node_modules'),
     ],

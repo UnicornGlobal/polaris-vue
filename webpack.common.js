@@ -57,7 +57,20 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              prependData: () => {
+                return '@import "./src/resources/styles/styles.scss";'
+              },
+              sassOptions: {
+                importer: onceImporter(),
+                includePaths: [
+                  path.resolve(__dirname, './src/resources/styles/styles')
+                ]
+              }
+            }
+          }
         ]
       },
       {
@@ -92,7 +105,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.svg', '*'],
+    extensions: ['.js', '.vue', '.json', '.svg', '.scss', '*'],
     modules: ['node_modules'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
