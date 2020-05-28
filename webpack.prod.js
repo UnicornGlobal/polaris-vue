@@ -41,7 +41,7 @@ module.exports = merge(common, {
     usedExports: true,
   },
   output: {
-    filename: '[name].min.js',
+    filename: 'polaris-vue.min.js',
     path: path.resolve(__dirname, 'lib'),
     publicPath: '/',
     library: 'VuePolaris',

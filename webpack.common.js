@@ -17,7 +17,7 @@ module.exports = {
     app: ['./src/index.js']
   },
   output: {
-    filename: 'app.min.js',
+    filename: 'polaris-vue.min.js',
     path: path.resolve(__dirname, 'lib'),
     publicPath: '/',
     library: 'VuePolaris',
@@ -26,7 +26,9 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: 'polaris-vue.css'
+    })
   ],
   module: {
     rules: [
@@ -104,7 +106,7 @@ module.exports = {
     modules: ['node_modules'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '*': resolve('src')
+      '+': resolve('src')
     }
   }
 }

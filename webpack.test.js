@@ -8,7 +8,7 @@ const config = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   output: {
-    filename: 'app.min.js',
+    filename: 'polaris-vue.min.js',
     path: path.resolve(__dirname, 'lib'),
     publicPath: '/',
     library: 'VuePolaris',
@@ -21,9 +21,8 @@ const config = {
       path.join(__dirname, 'node_modules'),
     ],
     alias: {
-      'vue': 'vue/dist/vue.esm.js',
       'vue$': 'vue/dist/vue.esm.js',
-      '*': path.join(__dirname, 'src')
+      '+': path.join(__dirname, 'src')
     }
   }
 }

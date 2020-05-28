@@ -18,7 +18,7 @@ module.exports = merge(common, {
     new webpack.HotModuleReplacementPlugin()
   ],
   output: {
-    filename: '[name].js',
+    filename: 'polaris-vue.js',
     path: path.resolve(__dirname, 'lib'),
     publicPath: '/',
     library: 'VuePolaris',
