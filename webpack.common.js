@@ -57,17 +57,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              sassOptions: {
-                importer: onceImporter(),
-                includePaths: [
-                  path.resolve(__dirname, './src/resources/styles/styles')
-                ]
-              }
-            }
-          }
+          'sass-loader'
         ]
       },
       {
