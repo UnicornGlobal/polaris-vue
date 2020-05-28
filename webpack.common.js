@@ -1,25 +1,24 @@
 const webpack = require('webpack')
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const vueLoaderConfig = require('./vue-loader.conf')
 const onceImporter = require('node-sass-once-importer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const libraryName = 'polaris-vue'
 const libraryNameCamelCase= 'PolarisVue'
 
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
   entry: {
-    app: ['./src/index.js'],
+    app: ['./src/index.js']
   },
   output: {
     path: path.resolve(__dirname, 'lib'),
-    publicPath: '/',
-    library: libraryNameCamelCase,
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
-  node: {
-    global: false
+    publicPath: '/'
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -39,16 +38,17 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: vueLoaderConfig
       },
       {
         test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        include: [resolve('src')]
       },
       {
         test: /\.(sass|scss|css)$/,
         use: [
-          'vue-style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           {
@@ -66,13 +66,41 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'vue-svg-loader'
-      },
+        loader: 'vue-svg-loader',
+        options: {
+          svgo: {
+            plugins: [
+              { removeDoctype: true },
+              { removeComments: true },
+              { removeMetadata: true },
+              { removeDesc: true },
+              { removeUselessDefs: true },
+              { removeXMLNS: true },
+              { removeEditorsNSData: true },
+              { removeEmptyAttrs: true },
+              { removeHiddenmElems: true },
+              { removeEmptyText: true },
+              { removeEmptyContainers: true },
+              { minifyStyles: true },
+              { removeUnknownsAndDefaults: true },
+              { removeUselessStrokeAndFill: true },
+              { removeUnusedNS: true },
+              { removeRasterImages: false },
+              { mergePaths: true },
+              { convertShapeToPath: true },
+              { removeScriptElement: true }
+            ]
+          }
+        }
+      }
     ]
   },
   resolve: {
-    modules: [path.resolve('./node_modules'), path.resolve('./src')],
-    extensions: ['.json', '.js']
+    extensions: ['.js', '.vue', '.json', '.svg', '*'],
+    modules: ['node_modules'],
+    alias: {
+      '*': resolve('src'),
+    }
   },
   externals: {
     vue: 'vue'

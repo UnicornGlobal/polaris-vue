@@ -19,9 +19,6 @@ module.exports = merge(common, {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'lib'),
-    publicPath: '/',
-    library: 'VuePolaris',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    publicPath: '/'
   }
 })

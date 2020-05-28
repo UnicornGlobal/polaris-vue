@@ -1,4 +1,4 @@
-import config from 'config/config.js'
+import config from '../../config/config.js'
 import logLevel from './logLevel.js'
 
 export default class ConsoleLogger {

@@ -81,9 +81,9 @@ import PolarisVueCollapseTransition from './components/transitions/CollapseTrans
 
 import ComponentHelpers from './ComponentHelpers.js'
 
-import config from 'config/config.js'
-import log from 'util/log.js'
-import ConsoleLogger from 'util/loggers/ConsoleLogger.js'
+import config from './config/config.js'
+import log from './util/log.js'
+import ConsoleLogger from './util/loggers/ConsoleLogger.js'
 
 
 const TAG = 'Bootstrap'
