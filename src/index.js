@@ -1,5 +1,4 @@
-// See webpack conf for `+` alias details
-const components = require.context('+', true, /\.vue$/)
+const components = require.context('./components', true, /\.vue$/)
 
 export default {
     install(Vue, options) {
