@@ -1,7 +1,5 @@
 <script>
 export default {
-    props: {
-    },
     render(createElement) {
         var validSlot = this.$slots.active
         console.log('valid slot', validSlot)

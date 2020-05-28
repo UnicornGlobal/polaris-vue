@@ -89,11 +89,13 @@
 
 
 <script>
+import PolarisButton from './PolarisButton.vue'
 import PolarisCardSection from './PolarisCardSection.vue'
 import PolarisButtonGroup from './PolarisButtonGroup.vue'
 
 export default {
   components: {
+    PolarisButton,
     PolarisButtonGroup,
     PolarisCardSection,
   },
@@ -111,15 +113,15 @@ export default {
       default: false
     },
     primaryFooterAction: {
-      type: Object,
+      type: [Object, Boolean],
       default() {
-        return {}
+        return false
       }
     },
     secondaryFooterAction: {
-      type: Object,
+      type: [Object, Boolean],
       default() {
-        return {}
+        return false
       }
     },
     actions: {

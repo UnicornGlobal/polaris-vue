@@ -10,16 +10,12 @@
   </transition>
 </template>
 
-<script>
-export default {
-}
-</script>
-
 <style lang="scss">
-.PolarisVue-FadeTransition--show {
-    transition: opacity 0.5s;
-}
-.PolarisVue-FadeTransition--hide {
-    opacity: 0;
-}
+  .PolarisVue-FadeTransition--show {
+      transition: opacity 0.5s;
+  }
+
+  .PolarisVue-FadeTransition--hide {
+      opacity: 0;
+  }
 </style>

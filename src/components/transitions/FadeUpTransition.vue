@@ -10,17 +10,13 @@
   </transition>
 </template>
 
-<script>
-export default {
-}
-</script>
-
 <style lang="scss">
-.PolarisVue-FadeUpTransition--show {
-    transition: opacity 0.5s, transform 0.5s;
-}
-.PolarisVue-FadeUpTransition--hide {
-    opacity: 0;
-    transform: translateY(30px);
-}
+  .PolarisVue-FadeUpTransition--show {
+      transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .PolarisVue-FadeUpTransition--hide {
+      opacity: 0;
+      transform: translateY(30px);
+  }
 </style>

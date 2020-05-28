@@ -57,40 +57,39 @@
   </polaris-card>
 </template>
 
-
 <script>
-import PolarisButton from './PolarisButton.vue'
-import PolarisCard from './PolarisCard.vue'
-import PolarisSettingAction from './PolarisSettingAction.vue'
-import PolarisTextStyle from './PolarisTextStyle.vue'
+  import PolarisButton from './PolarisButton.vue'
+  import PolarisCard from './PolarisCard.vue'
+  import PolarisSettingAction from './PolarisSettingAction.vue'
+  import PolarisTextStyle from './PolarisTextStyle.vue'
 
-export default {
-    components: {
-        PolarisButton,
-        PolarisCard,
-        PolarisTextStyle,
-        PolarisSettingAction,
-    },
-    props: {
-        connected: Boolean,
-        action: Object,
-        avatarUrl: String,
-        accountName: String,
-        title: String,
-        details: String,
-        termsOfService: String,
-    },
-    computed: {
-        realTitle() {
-            return this.title || this.accountName
-        }
-    },
-    methods: {
-        handleAction(action) {
-            if (action.onAction) {
-                action.onAction()
-            }
-        }
-    }
-}
+  export default {
+      components: {
+          PolarisButton,
+          PolarisCard,
+          PolarisTextStyle,
+          PolarisSettingAction,
+      },
+      props: {
+          connected: Boolean,
+          action: Object,
+          avatarUrl: String,
+          accountName: String,
+          title: String,
+          details: String,
+          termsOfService: String,
+      },
+      computed: {
+          realTitle() {
+              return this.title || this.accountName
+          }
+      },
+      methods: {
+          handleAction(action) {
+              if (action.onAction) {
+                  action.onAction()
+              }
+          }
+      }
+  }
 </script>
