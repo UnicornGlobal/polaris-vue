@@ -120,7 +120,6 @@
   </polaris-labelled>
 </template>
 
-
 <script>
 import PolarisLabelled from './PolarisLabelled.vue'
 import ComponentHelpers from '../ComponentHelpers.js'
