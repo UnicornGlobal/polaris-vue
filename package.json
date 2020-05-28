@@ -4,6 +4,7 @@
   "description": "Shopify Polaris for Vue 2",
   "module": "src/index.js",
   "files": [
+    "lib/**/*",
     "src/**/*",
     "!.DS_Store"
   ],
