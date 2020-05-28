@@ -1,6 +1,6 @@
 {
   "name": "@unicorns/polaris-vue",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Shopify Polaris for Vue 2",
   "module": "src/index.js",
   "files": [
