@@ -17,8 +17,12 @@ module.exports = {
     app: ['./src/index.js']
   },
   output: {
+    filename: 'app.min.js',
     path: path.resolve(__dirname, 'lib'),
-    publicPath: '/'
+    publicPath: '/',
+    library: 'VuePolaris',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -99,10 +103,8 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.svg', '*'],
     modules: ['node_modules'],
     alias: {
-      '*': resolve('src'),
+      'vue$': 'vue/dist/vue.esm.js',
+      '*': resolve('src')
     }
-  },
-  externals: {
-    vue: 'vue'
   }
 }

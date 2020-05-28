@@ -11,6 +11,7 @@ module.exports = merge(common, {
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: './lib',
+    index: 'index.html',
     hot: true
   },
   plugins: [
@@ -19,6 +20,9 @@ module.exports = merge(common, {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'lib'),
-    publicPath: '/'
+    publicPath: '/',
+    library: 'VuePolaris',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   }
 })
