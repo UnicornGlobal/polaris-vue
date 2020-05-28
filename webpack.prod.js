@@ -29,7 +29,7 @@ module.exports = merge(common, {
       uglifyOptions: {
         topLevel: true,
         compress: {
-          drop_console: true,
+          drop_console: false, // enable in prod
           hoist_funs: true,
           toplevel: true,
         },
