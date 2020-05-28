@@ -4,7 +4,9 @@
   "description": "Shopify Polaris for Vue 2",
   "main": "lib/polaris-vue.min.js",
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "src/**/*",
+    "!.DS_Store"
   ],
   "scripts": {
     "build": "webpack --config webpack.prod.js",
