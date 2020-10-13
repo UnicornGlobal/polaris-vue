@@ -128,6 +128,7 @@ export default {
     },
     computed: {
         finalSource() {
+          console.log('finalSourcez')
             var svgSource = this.source
             if (typeof this.source == 'string') {
                 const bundled = BUNDLED_ICONS[this.source]
