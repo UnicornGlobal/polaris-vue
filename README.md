@@ -2,22 +2,23 @@ Allows you to use [Shopify Polaris](http://polaris.shopify.com/) components in [
 
 This library currently contains components up-to-date with: _@shopify/polaris `v1.9.1`_
 
-`polaris-vue` has been used in production and been exposed to thousands of merchants, but please note that there may still be some rough edges. If you notice any bugs, please submit a PR or issue. You can also contact apps@eastsideco.com.
+# This is a hacky proof of concept and should not be used in production.
 
-
+This is a fork of `@eastsideco/polaris-vue`
 
 ## Getting started
+
 ```
-npm install @eastsideco/polaris-vue
+npm install @unicorns/polaris-vue
 ```
 
 When initializing Vue, i.e. in `main.js`:
 ```
 import Vue from 'vue';
-import PolarisVue from '@eastsideco/polaris-vue';
+import PolarisVue from '@unicorns/polaris-vue';
 
 // Recommended: import the correct CSS for the version of Polaris the library uses.
-import '@eastsideco/polaris-vue/lib/polaris-vue.css';
+import '@unicorns/polaris-vue/lib/polaris-vue.css';
 
 // Register the plugin with Vue
 Vue.use(PolarisVue);
@@ -32,7 +33,6 @@ new Vue({
 
 Check the demo page for usage examples.
 
-
 ## Viewing the demo page
 The demo page contains code examples of almost all the functionality in the library, so it can be pretty helpful.
 
@@ -41,8 +41,6 @@ To view the demo, open up `node_modules/@eastsideco/polaris-vue/test/index.html`
 Online version: http://demo.polaris-vue.eastsideco.io/
 
 Or to create a standalone copy: clone the repo, run `npm run dev`, then open the file at `test/index.html`.
-
-
 
 ## Differences to @shopify/polaris
 
@@ -85,7 +83,6 @@ This library doesn't currently support complete integration with the EASDK.
 You can still use this library in EASDK apps, but the page header will not be automatically hidden and synced with the EASDK header. 
 
 Support for the official behavior is planned.
-
 
 
 ## Configuration

@@ -50,7 +50,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
 }
 
 .Polaris-Banner--statusWarning {
-  @include banner-colors(color(yellow), color(yellow, lighter));
+  @include banner-colors(color(yellow, light), color(yellow, lighter));
 }
 
 .Polaris-Banner--statusCritical {

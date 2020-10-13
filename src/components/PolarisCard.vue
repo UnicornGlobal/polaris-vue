@@ -4,42 +4,40 @@
       v-if="title || actions.length > 0"
       class="Polaris-Card__Header"
     >
-      <h2
-        v-if="title && actions.length == 0"
-        class="Polaris-Heading"
-      >
-        {{ title }}
-      </h2>
       <polaris-stack
-        v-if="actions.length > 0"
-        alignment="baseline"
+        alignment="leading"
+        distribution="equalSpacing"
       >
-        <polaris-stack-item
-          v-if="title"
-          fill
-        >
-          <h2 class="Polaris-Heading">
-            {{ title }}
-          </h2>
-        </polaris-stack-item>
-        <polaris-stack-item>
-          <polaris-button-group>
-            <polaris-button
-              v-for="(action, index) in actions"
-              :key="index"
-              :slot="index"
-              :url="action.url"
-              :destructive="action.destructive"
-              :disabled="action.disabled"
-              :accessibility-label="action.accessiblityLabel"
-              :icon="action.icon"
-              plain
-              @click="handleAction(action)"
-            >
-              {{ action.content }}
-            </polaris-button>
-          </polaris-button-group>
-        </polaris-stack-item>
+        <slot name="title">
+          <polaris-stack-item
+            v-if="title"
+            fill
+          >
+            <h2 class="Polaris-Heading">
+                {{ title }}
+            </h2>
+          </polaris-stack-item>
+        </slot>
+        <slot name="actions">
+          <polaris-stack-item>
+            <polaris-button-group>
+              <polaris-button
+                v-for="(action, index) in actions"
+                :key="index"
+                :slot="index"
+                :url="action.url"
+                :destructive="action.destructive"
+                :disabled="action.disabled"
+                :accessibility-label="action.accessiblityLabel"
+                :icon="action.icon"
+                plain
+                @click="handleAction(action)"
+              >
+                {{ action.content }}
+              </polaris-button>
+            </polaris-button-group>
+          </polaris-stack-item>
+        </slot>
       </polaris-stack>
     </div>
     <template v-if="!sectioned">

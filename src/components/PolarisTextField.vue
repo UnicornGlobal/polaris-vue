@@ -233,6 +233,5 @@ export default {
             this.$emit('change', newValue)
         }
     }
-
 }
 </script>

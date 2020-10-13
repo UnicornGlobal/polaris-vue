@@ -1,19 +1,42 @@
-<script>
-import PolarisFormLayoutGroup from './PolarisFormLayoutGroup.vue'
-import PolarisFormLayoutItem from './PolarisFormLayoutItem.vue'
+<template>
+  <div class="Polaris-FormLayout">
+    <slot />
+  </div>
+</template>
 
-import ComponentHelpers from '../ComponentHelpers.js'
+<style lang="scss">
+  $item-min-size: rem(220px);
 
-export default {
-    props: {
+  .Polaris-FormLayout {
+    margin-top: -1 * spacing();
+    margin-left: -1 * spacing(loose);
+  }
 
-    },
-    render(createElement) {
-        return createElement('div', { 'class': 'Polaris-FormLayout' },
-            ComponentHelpers.wrapNodesWithComponent(createElement,
-                                                    this.$slots.default,
-                                                    PolarisFormLayoutItem,
-                                                    [PolarisFormLayoutGroup]))
-    }
-}
-</script>
+  .Polaris-FormLayout--condensed .Polaris-FormLayout__Item {
+    flex-basis: (0.5 * $item-min-size);
+    min-width: (0.5 * $item-min-size);
+  }
+
+  .Polaris-FormLayout__Title {
+    margin-bottom: -1 * spacing(tight);
+    padding: spacing() spacing(loose) 0;
+  }
+
+  .Polaris-FormLayout__Items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .Polaris-FormLayout__HelpText {
+    @include text-emphasis-subdued;
+    padding: spacing(tight) spacing(loose) 0;
+  }
+
+  .Polaris-FormLayout__Item {
+    flex: 1 1 $item-min-size;
+    margin-top: spacing();
+    margin-left: spacing(loose);
+    min-width: $item-min-size;
+    max-width: calc(100% - #{spacing(loose)});
+  }

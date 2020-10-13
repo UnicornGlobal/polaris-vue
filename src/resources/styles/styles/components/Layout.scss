@@ -32,9 +32,9 @@ $relative-size: $primary-basis / $secondary-basis;
 
 .Polaris-Layout__Section,
 .Polaris-Layout__AnnotatedSection {
-  max-width: calc(100% - #{spacing(loose)});
+  max-width: calc(100% - #{spacing()});
   margin-top: spacing(loose);
-  margin-left: spacing(loose);
+  margin-left: spacing(tight);
 
   + .Polaris-Layout__AnnotatedSection {
     @include page-content-when-not-fully-condensed {

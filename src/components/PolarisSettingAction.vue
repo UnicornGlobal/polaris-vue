@@ -14,6 +14,7 @@
           :url="action.url"
           :destructive="action.destructive"
           :disabled="action.disabled"
+          :loading="action.loading"
           :icon="action.icon"
           :accessibility-label="action.accessibilityLabel"
           @click="handleAction(action)"

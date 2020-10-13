@@ -111,7 +111,7 @@
         <span class="Polaris-Select__SelectedOption">{{ (!value && placeholder) ? placeholder : selectedText }}</span>
         <!--            <span class="Polaris-Select__SelectedOption">{{(!value && placeholder) ? placeholder : value}}</span>-->
         <div class="Polaris-Select__Icon">
-          <polaris-icon :source="arrowUpDown" />
+          <polaris-icon source="arrowUpDown" />
         </div>
       </div>
 
@@ -122,12 +122,13 @@
 
 <script>
 import PolarisLabelled from './PolarisLabelled.vue'
+import PolarisIcon from './PolarisIcon.vue'
 import ComponentHelpers from '../ComponentHelpers.js'
-import arrowUpDown from '../resources/arrow-up-down.svg'
 
 export default {
   components: {
     PolarisLabelled,
+    PolarisIcon
   },
   model: {
     prop: 'value',
@@ -180,11 +181,6 @@ export default {
     placeholder: {
       type: String,
       default: ''
-    }
-  },
-  data() {
-    return {
-      arrowUpDown: arrowUpDown,
     }
   },
   computed: {
@@ -295,6 +291,7 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-right: 3rem;
 }
 
 @media (min-width: 40em) {

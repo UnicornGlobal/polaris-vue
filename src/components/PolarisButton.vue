@@ -21,7 +21,7 @@
       class="Polaris-Button__Spinner"
     >
       <polaris-spinner
-        size="small"
+        size="20"
         :color="spinnerColor"
         accessibility-label="Loading"
       />
@@ -102,7 +102,7 @@ export default {
             return this.loading ? 'placeholder' : this.icon
         },
         spinnerColor() {
-            return (this.primary || this.destructive) ? 'white' : 'inkLightest'
+            return (this.primary || this.destructive) ? 'white' : 'black'
         },
         classes() {
             var r = ComponentHelpers.makeComponentClass('Polaris-Button', [
@@ -122,14 +122,7 @@ export default {
     },
     methods: {
         onClick(e) {
-            if (this.disabled) {
-                return
-            }
-
-            if (this.submit) {
-                return true
-            }
-
+          console.log('onclick')
             this.$emit('click', e)
         },
         onFocus(e) {
